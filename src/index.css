@@ -7,6 +7,6 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-img{
+img {
   filter: brightness(0);
 }
