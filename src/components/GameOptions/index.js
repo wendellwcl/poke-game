@@ -20,6 +20,7 @@ const GameOptions = () => {
                         <CustomCheckbox
                             key={index}
                             name={generation.name}
+                            index={index}
                         />
                     ))}
                 </div>

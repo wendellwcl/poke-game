@@ -2,8 +2,9 @@ import { useEffect, useState } from 'react';
 
 import './CustomCheckbox.css';
 
-const CustomCheckbox = ({ name }) => {
+const CustomCheckbox = ({ name, index }) => {
     const [text, setText] = useState(name);
+    const [checked, setChecked] = useState();
 
     useEffect(() => {
         const index = name.search('-');
@@ -12,6 +13,10 @@ const CustomCheckbox = ({ name }) => {
 
         setText(handledName);
     }, [name]);
+
+    useEffect(() => {
+        index === 0 && setChecked(true);
+    }, [index]);
 
     return (
         <label
@@ -23,6 +28,7 @@ const CustomCheckbox = ({ name }) => {
                 type="checkbox"
                 className="custom-checkbox"
                 id={name}
+                defaultChecked={checked}
             />
             <span className="custom-checkbox-text">{text}</span>
             <div
