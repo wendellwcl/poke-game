@@ -6,11 +6,16 @@ import CustomCheckbox from '../CustomCheckbox';
 import './GameOptions.css';
 
 const GameOptions = () => {
-    const { generationsList } = useContext(DataContext);
+    const { generationsList, handlePlay } = useContext(DataContext);
 
     return (
         <section id="game-options-container">
-            <button type="button">Sortear outro</button>
+            <button
+                type="button"
+                onClick={handlePlay}
+            >
+                Sortear outro
+            </button>
             <button type="button">Revelar resposta</button>
 
             <div id="generations-container">

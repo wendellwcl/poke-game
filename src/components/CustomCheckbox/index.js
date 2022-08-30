@@ -29,6 +29,7 @@ const CustomCheckbox = ({ name, index }) => {
                 className="custom-checkbox"
                 id={name}
                 defaultChecked={checked}
+                name={name}
             />
             <span className="custom-checkbox-text">{text}</span>
             <div
