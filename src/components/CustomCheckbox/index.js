@@ -16,7 +16,7 @@ const CustomCheckbox = ({ name, index }) => {
 
     useEffect(() => {
         name === 'generation-i' && setChecked(true);
-    }, [index]);
+    }, [name]);
 
     return (
         <label
