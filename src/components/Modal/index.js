@@ -8,26 +8,28 @@ const Modal = ({ id, children }) => {
 
     useEffect(() => {
         const el = modal.current;
-        const closeElements = el.querySelectorAll('[data-dismiss="modal"]');
-        closeElements.forEach((el) => {
-            el.addEventListener('click', handleCloseModal);
+        const dismissTriggers = el.querySelectorAll('[data-dismiss]');
+        dismissTriggers.forEach((el) => {
+            const dismissTarget = el.getAttribute('data-dismiss');
+            el.addEventListener('click', (e) =>
+                handleCloseModal(e.target, dismissTarget)
+            );
         });
     });
 
-    function handleCloseModal(e) {
-        const el = e.target;
-        let modal = el.parentNode;
+    function handleCloseModal(el, target) {
+        let targetEl = el.parentNode;
 
-        while (!modal.classList.contains('modal')) {
-            modal = modal.parentNode;
+        while (!targetEl.classList.contains(target)) {
+            targetEl = targetEl.parentNode;
         }
 
-        modal.classList.remove('show');
+        targetEl.classList.remove('show');
     }
 
     return (
         <div
-            className="modal"
+            className="modal show"
             id={id}
             ref={modal}
             tabIndex="-1"
