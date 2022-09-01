@@ -1,39 +1,46 @@
 import { createContext, useState, useEffect } from 'react';
-import useFetch from '../hooks/useFetch';
+import { fetchJSON } from '../helper/ReusableFunctions';
 
 export const DataContext = createContext();
 
 export const DataContextProvider = ({ children }) => {
-    const generationsData = useFetch('https://pokeapi.co/api/v2/generation/');
-
     const [generationsList, setGenerationsList] = useState([]);
     const [poke, setPoke] = useState();
 
     useEffect(() => {
-        if (generationsData) {
-            let auxiliarArray = [];
+        async function fetchGenerationsData() {
+            const auxiliarArray = [];
 
-            generationsData.results.forEach((generation) => {
-                fetch(generation.url)
-                    .then((res) => res.json())
-                    .then((data) => {
-                        if (
-                            !auxiliarArray.includes(
-                                (item) => item.name === data.name
-                            )
-                        ) {
-                            const newGeneration = {
-                                name: data.name,
-                                species: data.pokemon_species,
-                            };
+            const generationsData = await fetchJSON(
+                'https://pokeapi.co/api/v2/generation/'
+            );
 
-                            auxiliarArray.push(newGeneration);
-                            setGenerationsList([...auxiliarArray]);
-                        }
-                    });
-            });
+            const urls = generationsData.results.map(
+                (generation) => generation.url
+            );
+
+            for (const url of urls) {
+                const newGenerationData = await fetchJSON(url);
+
+                if (
+                    !auxiliarArray.includes(
+                        (item) => item.name === newGenerationData.name
+                    )
+                ) {
+                    const newGeneration = {
+                        name: newGenerationData.name,
+                        species: newGenerationData.pokemon_species,
+                    };
+
+                    auxiliarArray.push(newGeneration);
+                }
+            }
+
+            setGenerationsList(auxiliarArray);
         }
-    }, [generationsData]);
+
+        fetchGenerationsData();
+    }, []);
 
     function checkSelectedGenerations() {
         const generations = Array.from(
