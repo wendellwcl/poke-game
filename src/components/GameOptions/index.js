@@ -24,7 +24,7 @@ const GameOptions = () => {
                     {generationsList.map((generation, index) => (
                         <CustomCheckbox
                             key={index}
-                            name={generation.name}
+                            generation={generation}
                         />
                     ))}
                 </div>

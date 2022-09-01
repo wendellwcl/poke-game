@@ -30,6 +30,7 @@ export const DataContextProvider = ({ children }) => {
                     const newGeneration = {
                         name: newGenerationData.name,
                         species: newGenerationData.pokemon_species,
+                        isChecked: false,
                     };
 
                     auxiliarArray.push(newGeneration);

@@ -2,7 +2,9 @@ import { useEffect, useState } from 'react';
 
 import './CustomCheckbox.css';
 
-const CustomCheckbox = ({ name, index }) => {
+const CustomCheckbox = ({ generation }) => {
+    const { name } = generation;
+
     const [text, setText] = useState(name);
     const [checked, setChecked] = useState();
 
@@ -15,8 +17,11 @@ const CustomCheckbox = ({ name, index }) => {
     }, [name]);
 
     useEffect(() => {
-        name === 'generation-i' && setChecked(true);
-    }, [name]);
+        if (name === 'generation-i') {
+            generation.isChecked = true;
+            setChecked(true);
+        }
+    }, [name, generation]);
 
     return (
         <label
