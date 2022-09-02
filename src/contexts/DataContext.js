@@ -54,11 +54,11 @@ export const DataContextProvider = ({ children }) => {
             const el = generationCheckbox.querySelector('.custom-checkbox');
 
             if (el.checked) {
-                const name = el.name;
-                const obj = generationsList.find(
-                    (generation) => generation.name === name
+                const generationName = el.name;
+                const generationData = generationsList.find(
+                    (generation) => generation.name === generationName
                 );
-                selectedGenerations.push(obj);
+                selectedGenerations.push(generationData);
             }
         });
 
@@ -75,23 +75,25 @@ export const DataContextProvider = ({ children }) => {
         return species;
     }
 
-    function rafflePoke(species) {
+    function drawPoke(species) {
         const randomNumber = Math.floor(Math.random() * species.length);
 
         return species[randomNumber];
     }
 
-    function fetchPoke(url) {
-        fetch(url)
-            .then((res) => res.json())
-            .then((data) => setPoke(data));
-    }
-
-    function handlePlay() {
+    async function handlePlay() {
         const selectedGenerations = checkSelectedGenerations();
+
+        if (selectedGenerations.length < 1) {
+            const event = new Event('noGererationChecked');
+            window.dispatchEvent(event);
+            return;
+        }
+
         const species = getSpecies(selectedGenerations);
-        const poke = rafflePoke(species);
-        fetchPoke(poke.url);
+        const poke = drawPoke(species);
+        const pokeData = await fetchJSON(poke.url);
+        setPoke(pokeData);
     }
 
     return (

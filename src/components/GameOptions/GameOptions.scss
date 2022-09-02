@@ -25,6 +25,10 @@
     border-radius: 8px;
     border: 2px solid black; //PROVISIONAL
 
+    &.error-feedback {
+        border: 2px solid red;
+    }
+
     h6 {
         font-size: 1rem;
         font-weight: normal;
