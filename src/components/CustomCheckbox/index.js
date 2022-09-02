@@ -1,7 +1,5 @@
 import { useEffect, useState } from 'react';
 
-import './CustomCheckbox.css';
-
 const CustomCheckbox = ({ generation }) => {
     const { name } = generation;
 

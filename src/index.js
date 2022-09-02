@@ -1,7 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import 'normalize.css';
-import './index.css';
+import './style/index.css';
 import App from './App';
 import { DataContextProvider } from './contexts/DataContext';
 

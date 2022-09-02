@@ -4,8 +4,6 @@ import { DataContext } from '../../contexts/DataContext';
 
 import CustomCheckbox from '../CustomCheckbox';
 
-import './GameOptions.css';
-
 const GameOptions = () => {
     const { generationsList, handlePlay } = useContext(DataContext);
 

@@ -1,3 +1,10 @@
+@import 'normalize.css';
+@import 'variables';
+
+@import '../components/CustomCheckbox/CustomCheckbox';
+@import '../components/GameOptions/GameOptions';
+@import '../components/Modal/Modal';
+
 * {
     margin: 0;
     padding: 0;
@@ -5,7 +12,6 @@
 }
 
 body {
-    margin: 0;
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto',
         'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans',
         'Helvetica Neue', sans-serif;

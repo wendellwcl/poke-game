@@ -1,8 +1,6 @@
 import { useEffect, useRef } from 'react';
 import { BsXLg } from 'react-icons/bs';
 
-import './Modal.css';
-
 const Modal = ({ id, children }) => {
     const modal = useRef();
 
