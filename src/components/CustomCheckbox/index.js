@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react';
 const CustomCheckbox = ({ generation }) => {
     const { name, isChecked } = generation;
 
+    const [checked, setChecked] = useState(isChecked);
     const [text, setText] = useState(name);
 
     useEffect(() => {
@@ -12,6 +13,11 @@ const CustomCheckbox = ({ generation }) => {
 
         setText(handledName);
     }, [name]);
+
+    function toggleChecked() {
+        generation.isChecked = !checked;
+        setChecked((prev) => !prev);
+    }
 
     return (
         <label
@@ -23,8 +29,9 @@ const CustomCheckbox = ({ generation }) => {
                 type="checkbox"
                 className="custom-checkbox"
                 id={name}
-                defaultChecked={isChecked}
+                defaultChecked={checked}
                 name={name}
+                onChange={toggleChecked}
             />
             <span className="custom-checkbox-text">{text}</span>
             <div
