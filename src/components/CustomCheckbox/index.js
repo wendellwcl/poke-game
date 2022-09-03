@@ -1,10 +1,9 @@
 import { useEffect, useState } from 'react';
 
 const CustomCheckbox = ({ generation }) => {
-    const { name } = generation;
+    const { name, isChecked } = generation;
 
     const [text, setText] = useState(name);
-    const [checked, setChecked] = useState();
 
     useEffect(() => {
         const index = name.search('-');
@@ -13,13 +12,6 @@ const CustomCheckbox = ({ generation }) => {
 
         setText(handledName);
     }, [name]);
-
-    useEffect(() => {
-        if (name === 'generation-i') {
-            generation.isChecked = true;
-            setChecked(true);
-        }
-    }, [name, generation]);
 
     return (
         <label
@@ -31,7 +23,7 @@ const CustomCheckbox = ({ generation }) => {
                 type="checkbox"
                 className="custom-checkbox"
                 id={name}
-                defaultChecked={checked}
+                defaultChecked={isChecked}
                 name={name}
             />
             <span className="custom-checkbox-text">{text}</span>

@@ -19,7 +19,7 @@ export const DataContextProvider = ({ children }) => {
                 (generation) => generation.url
             );
 
-            for (const url of urls) {
+            for (const [idx, url] of urls.entries()) {
                 const newGenerationData = await fetchJSON(url);
 
                 if (
@@ -30,7 +30,7 @@ export const DataContextProvider = ({ children }) => {
                     const newGeneration = {
                         name: newGenerationData.name,
                         species: newGenerationData.pokemon_species,
-                        isChecked: false,
+                        isChecked: idx === 0 ? true : false,
                     };
 
                     auxiliarArray.push(newGeneration);
