@@ -92,7 +92,9 @@ export const DataContextProvider = ({ children }) => {
 
         const species = getSpecies(selectedGenerations);
         const poke = drawPoke(species);
-        const pokeData = await fetchJSON(poke.url);
+        const pokeData = await fetchJSON(
+            `https://pokeapi.co/api/v2/pokemon/${poke.name}`
+        );
         setPoke(pokeData);
     }
 
