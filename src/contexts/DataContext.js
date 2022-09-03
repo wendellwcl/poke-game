@@ -7,6 +7,8 @@ export const DataContextProvider = ({ children }) => {
     const [generationsList, setGenerationsList] = useState([]);
     const [poke, setPoke] = useState();
 
+    const noGenerationChecked = new Event('noGererationChecked');
+
     useEffect(() => {
         async function fetchGenerationsData() {
             const auxiliarArray = [];
@@ -43,28 +45,6 @@ export const DataContextProvider = ({ children }) => {
         fetchGenerationsData();
     }, []);
 
-    function checkSelectedGenerations() {
-        const generations = Array.from(
-            document.querySelector('#generations-options').childNodes
-        );
-
-        const selectedGenerations = [];
-
-        generations.forEach((generationCheckbox) => {
-            const el = generationCheckbox.querySelector('.custom-checkbox');
-
-            if (el.checked) {
-                const generationName = el.name;
-                const generationData = generationsList.find(
-                    (generation) => generation.name === generationName
-                );
-                selectedGenerations.push(generationData);
-            }
-        });
-
-        return selectedGenerations;
-    }
-
     function getSpecies(generations) {
         let species = [];
 
@@ -82,19 +62,23 @@ export const DataContextProvider = ({ children }) => {
     }
 
     async function handlePlay() {
-        const selectedGenerations = checkSelectedGenerations();
+        const selectedGenerations = generationsList.filter(
+            (generation) => generation.isChecked === true
+        );
 
         if (selectedGenerations.length < 1) {
-            const event = new Event('noGererationChecked');
-            window.dispatchEvent(event);
+            window.dispatchEvent(noGenerationChecked);
             return;
         }
 
         const species = getSpecies(selectedGenerations);
-        const poke = drawPoke(species);
+
+        const randomPoke = drawPoke(species);
+
         const pokeData = await fetchJSON(
-            `https://pokeapi.co/api/v2/pokemon/${poke.name}`
+            `https://pokeapi.co/api/v2/pokemon/${randomPoke.name}`
         );
+
         setPoke(pokeData);
     }
 
