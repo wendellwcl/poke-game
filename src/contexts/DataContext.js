@@ -4,12 +4,15 @@ import { fetchJSON } from '../helper/ReusableFunctions';
 export const DataContext = createContext();
 
 export const DataContextProvider = ({ children }) => {
+    const [loading, setLoading] = useState(true);
     const [generationsList, setGenerationsList] = useState([]);
     const [poke, setPoke] = useState();
 
     const noGenerationChecked = new Event('noGererationChecked');
 
     const handlePlay = useCallback(async () => {
+        setLoading(true);
+
         const selectedGenerations = generationsList.filter(
             (generation) => generation.isChecked === true
         );
@@ -28,6 +31,7 @@ export const DataContextProvider = ({ children }) => {
         );
 
         setPoke(pokeData);
+        setLoading(false);
 
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [generationsList]);
@@ -91,7 +95,9 @@ export const DataContextProvider = ({ children }) => {
     }
 
     return (
-        <DataContext.Provider value={{ generationsList, poke, handlePlay }}>
+        <DataContext.Provider
+            value={{ generationsList, loading, poke, handlePlay }}
+        >
             {children}
         </DataContext.Provider>
     );
