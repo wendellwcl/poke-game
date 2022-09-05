@@ -1,4 +1,4 @@
-import { createContext, useState, useEffect } from 'react';
+import { createContext, useState, useEffect, useCallback } from 'react';
 import { fetchJSON } from '../helper/ReusableFunctions';
 
 export const DataContext = createContext();
@@ -8,6 +8,29 @@ export const DataContextProvider = ({ children }) => {
     const [poke, setPoke] = useState();
 
     const noGenerationChecked = new Event('noGererationChecked');
+
+    const handlePlay = useCallback(async () => {
+        const selectedGenerations = generationsList.filter(
+            (generation) => generation.isChecked === true
+        );
+
+        if (selectedGenerations.length < 1) {
+            window.dispatchEvent(noGenerationChecked);
+            return;
+        }
+
+        const species = getSpecies(selectedGenerations);
+
+        const randomPoke = drawPoke(species);
+
+        const pokeData = await fetchJSON(
+            `https://pokeapi.co/api/v2/pokemon/${randomPoke.name}`
+        );
+
+        setPoke(pokeData);
+
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [generationsList]);
 
     useEffect(() => {
         async function fetchGenerationsData() {
@@ -65,27 +88,6 @@ export const DataContextProvider = ({ children }) => {
         const randomNumber = Math.floor(Math.random() * species.length);
 
         return species[randomNumber];
-    }
-
-    async function handlePlay() {
-        const selectedGenerations = generationsList.filter(
-            (generation) => generation.isChecked === true
-        );
-
-        if (selectedGenerations.length < 1) {
-            window.dispatchEvent(noGenerationChecked);
-            return;
-        }
-
-        const species = getSpecies(selectedGenerations);
-
-        const randomPoke = drawPoke(species);
-
-        const pokeData = await fetchJSON(
-            `https://pokeapi.co/api/v2/pokemon/${randomPoke.name}`
-        );
-
-        setPoke(pokeData);
     }
 
     return (
