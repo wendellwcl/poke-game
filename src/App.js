@@ -3,6 +3,7 @@ import { useContext } from 'react';
 import { DataContext } from './contexts/DataContext';
 
 import GameOptions from './components/GameOptions';
+import PokeDisplay from './components/PokeDisplay';
 
 function App() {
     const { loading } = useContext(DataContext);
@@ -13,6 +14,7 @@ function App() {
 
     return (
         <div className="App">
+            <PokeDisplay />
             <GameOptions />
         </div>
     );
