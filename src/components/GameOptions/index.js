@@ -1,5 +1,4 @@
-import { useEffect } from 'react';
-import { useContext, useRef } from 'react';
+import { useContext, useRef, useEffect } from 'react';
 import { DataContext } from '../../contexts/DataContext';
 
 import CustomCheckbox from '../CustomCheckbox';
