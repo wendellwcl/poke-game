@@ -3,7 +3,7 @@ import { DataContext } from '../../contexts/DataContext';
 
 import CustomCheckbox from '../CustomCheckbox';
 
-const GameOptions = () => {
+const GameInterface = () => {
     const { generationsList, handlePlay } = useContext(DataContext);
 
     const generationsContainer = useRef();
@@ -49,4 +49,4 @@ const GameOptions = () => {
     );
 };
 
-export default GameOptions;
+export default GameInterface;

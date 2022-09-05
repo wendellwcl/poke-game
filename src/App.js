@@ -2,7 +2,7 @@ import { useContext } from 'react';
 
 import { DataContext } from './contexts/DataContext';
 
-import GameOptions from './components/GameOptions';
+import GameInterface from './components/GameInterface';
 import PokeDisplay from './components/PokeDisplay';
 
 function App() {
@@ -15,7 +15,7 @@ function App() {
     return (
         <div className="App">
             <PokeDisplay />
-            <GameOptions />
+            <GameInterface />
         </div>
     );
 }
