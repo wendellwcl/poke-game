@@ -45,6 +45,12 @@ export const DataContextProvider = ({ children }) => {
         fetchGenerationsData();
     }, []);
 
+    useEffect(() => {
+        if (generationsList.length > 0) {
+            handlePlay();
+        }
+    }, [generationsList, handlePlay]);
+
     function getSpecies(generations) {
         let species = [];
 
