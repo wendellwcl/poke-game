@@ -1,19 +1,32 @@
-#game-options-container {
+#game-interface {
     grid-area: gameInterface;
+    padding: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#game-options-container {
     padding: 0.5rem 1rem;
     border-radius: 8px;
 
+    .btn-container {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        grid-gap: 16px;
+    }
+
     button {
         display: block;
-        width: 100%;
         margin-bottom: 16px;
-        padding: 4px 8px;
-        border: 2px solid black;
+        padding: 8px;
+        border: none;
         border-radius: 8px;
         font-weight: bold;
+        font-size: 0.9rem;
+        color: $light-color; //PROVISIONAL
+        background: $terciary-color; //PROVISIONAL
         cursor: pointer;
-        color: white; //PROVISIONAL
-        background: blue; //PROVISIONAL
 
         //Hover
     }
@@ -22,15 +35,14 @@
 #generations-container {
     padding: 0.5rem;
     border-radius: 8px;
-    border: 2px solid black; //PROVISIONAL
+    border: 2px solid $dark-color; //PROVISIONAL
 
     &.error-feedback {
-        border: 2px solid red;
+        border: 2px solid $terciary-color;
     }
 
     h6 {
         font-size: 1rem;
-        font-weight: normal;
         margin-bottom: 0.5rem;
     }
 

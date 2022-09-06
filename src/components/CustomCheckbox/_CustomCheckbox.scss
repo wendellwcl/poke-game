@@ -19,16 +19,17 @@
     .custom-checkbox-box {
         width: 16px;
         height: 16px;
-        border: 2px solid black; //PROVISIONAL
+        border: 2px solid $dark-color; //PROVISIONAL
         border-radius: 4px;
         margin-right: 0.5rem;
     }
 
     input:checked ~ .custom-checkbox-box {
-        background: blue; //PROVISIONAL
+        background: $terciary-color; //PROVISIONAL
     }
 
     .custom-checkbox-text {
         text-transform: capitalize;
+        font-weight: bold;
     }
 }

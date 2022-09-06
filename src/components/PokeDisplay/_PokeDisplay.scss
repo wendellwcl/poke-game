@@ -1,12 +1,19 @@
 #poke-display {
     grid-area: pokeDisplay;
-    padding: 64px;
+    width: 100%;
+    height: 100%;
+    padding: 32px;
+    position: relative;
 }
 
 #poke-display img {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     display: block;
-    width: 100%;
-    height: 100%;
+    width: 70%;
+    height: 70%;
     object-fit: contain;
     filter: brightness(0);
 }

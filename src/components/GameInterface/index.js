@@ -21,28 +21,32 @@ const GameInterface = () => {
     }
 
     return (
-        <section id="game-options-container">
-            <button
-                type="button"
-                onClick={handlePlay}
-            >
-                Sortear outro
-            </button>
-            <button type="button">Revelar resposta</button>
+        <section id="game-interface">
+            <div id="game-options-container">
+                <div className="btn-container">
+                    <button
+                        type="button"
+                        onClick={handlePlay}
+                    >
+                        Sortear outro
+                    </button>
+                    <button type="button">Revelar resposta</button>
+                </div>
 
-            <div
-                id="generations-container"
-                ref={generationsContainer}
-                onClick={removeErrorFeedback}
-            >
-                <h6>Selecione quais gerações incluir ao jogo:</h6>
-                <div id="generations-options">
-                    {generationsList.map((generation, index) => (
-                        <CustomCheckbox
-                            key={index}
-                            generation={generation}
-                        />
-                    ))}
+                <div
+                    id="generations-container"
+                    ref={generationsContainer}
+                    onClick={removeErrorFeedback}
+                >
+                    <h6>Selecione quais gerações incluir ao jogo:</h6>
+                    <div id="generations-options">
+                        {generationsList.map((generation, index) => (
+                            <CustomCheckbox
+                                key={index}
+                                generation={generation}
+                            />
+                        ))}
+                    </div>
                 </div>
             </div>
         </section>
