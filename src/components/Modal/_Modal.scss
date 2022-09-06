@@ -57,16 +57,15 @@
             justify-content: flex-end;
 
             button {
-                min-width: 64px;
                 margin-left: 16px;
-                padding: 8px;
-                color: $light-color;
-                font-size: 1rem;
-                font-weight: bold;
-                border: none;
-                border-radius: 8px;
-                background: $primary-color;
-                cursor: pointer;
+            }
+
+            .cancel-btn {
+                @include btn-base(#c2c2c2, $dark-color);
+            }
+
+            .confirm-btn {
+                @include btn-base($primary-color, $light-color);
             }
         }
     }

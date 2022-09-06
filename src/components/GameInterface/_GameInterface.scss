@@ -16,18 +16,7 @@
         grid-gap: 16px;
 
         button {
-            display: block;
-            margin-bottom: 16px;
-            padding: 8px;
-            border: none;
-            border-radius: 8px;
-            font-weight: bold;
-            font-size: 0.9rem;
-            color: $light-color; //PROVISIONAL
-            background: $terciary-color; //PROVISIONAL
-            cursor: pointer;
-
-            //Hover
+            @include btn-base($terciary-color, $light-color);
         }
     }
 }

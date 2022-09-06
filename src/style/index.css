@@ -115,14 +115,13 @@ body {
 }
 #game-options-container .btn-container button {
   display: block;
-  margin-bottom: 16px;
+  min-width: 64px;
   padding: 8px;
+  background: #dc2e1b;
   border: none;
   border-radius: 8px;
-  font-weight: bold;
-  font-size: 0.9rem;
   color: #f4f4fa;
-  background: #dc2e1b;
+  font-weight: bold;
   cursor: pointer;
 }
 
@@ -198,14 +197,27 @@ body {
   justify-content: flex-end;
 }
 .modal .modal-dialog .modal-footer button {
-  min-width: 64px;
   margin-left: 16px;
+}
+.modal .modal-dialog .modal-footer .cancel-btn {
+  display: block;
+  min-width: 64px;
   padding: 8px;
-  color: #f4f4fa;
-  font-size: 1rem;
-  font-weight: bold;
+  background: #c2c2c2;
   border: none;
   border-radius: 8px;
+  color: #212529;
+  font-weight: bold;
+  cursor: pointer;
+}
+.modal .modal-dialog .modal-footer .confirm-btn {
+  display: block;
+  min-width: 64px;
+  padding: 8px;
   background: #306ab1;
+  border: none;
+  border-radius: 8px;
+  color: #f4f4fa;
+  font-weight: bold;
   cursor: pointer;
 }/*# sourceMappingURL=index.css.map */

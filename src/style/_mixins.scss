@@ -1,0 +1,11 @@
+@mixin btn-base($bg-color: $light-color, $font-color: $dark-color) {
+    display: block;
+    min-width: 64px;
+    padding: 8px;
+    background: $bg-color;
+    border: none;
+    border-radius: 8px;
+    color: $font-color;
+    font-weight: bold;
+    cursor: pointer;
+}

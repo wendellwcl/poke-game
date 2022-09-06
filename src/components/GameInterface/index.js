@@ -36,14 +36,13 @@ const GameInterface = () => {
                         Sortear outro
                     </button>
                     <button type="button">Revelar resposta</button>
+                    <button
+                        type="button"
+                        onClick={openGenerationsModal}
+                    >
+                        Selecionar Gerações
+                    </button>
                 </div>
-
-                <button
-                    type="button"
-                    onClick={openGenerationsModal}
-                >
-                    Selecionar Gerações
-                </button>
 
                 <Modal
                     title="Selecionar gerações"
@@ -69,6 +68,7 @@ const GameInterface = () => {
                     <div className="modal-footer">
                         <button
                             type="button"
+                            className="confirm-btn"
                             data-dismiss="modal"
                             aria-label="save and close"
                         >
