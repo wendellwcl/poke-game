@@ -2,6 +2,7 @@ import { useContext, useRef, useEffect } from 'react';
 import { DataContext } from '../../contexts/DataContext';
 
 import CustomCheckbox from '../CustomCheckbox';
+import Modal from '../Modal';
 
 const GameInterface = () => {
     const { generationsList, handlePlay } = useContext(DataContext);
@@ -20,6 +21,10 @@ const GameInterface = () => {
         elTarget.classList.remove('error-feedback');
     }
 
+    function openGenerationsModal() {
+        document.querySelector('#generations-modal').classList.add('show');
+    }
+
     return (
         <section id="game-interface">
             <div id="game-options-container">
@@ -33,21 +38,44 @@ const GameInterface = () => {
                     <button type="button">Revelar resposta</button>
                 </div>
 
-                <div
-                    id="generations-container"
-                    ref={generationsContainer}
-                    onClick={removeErrorFeedback}
+                <button
+                    type="button"
+                    onClick={openGenerationsModal}
                 >
-                    <h6>Selecione quais gerações incluir ao jogo:</h6>
-                    <div id="generations-options">
-                        {generationsList.map((generation, index) => (
-                            <CustomCheckbox
-                                key={index}
-                                generation={generation}
-                            />
-                        ))}
+                    Selecionar Gerações
+                </button>
+
+                <Modal
+                    title="Selecionar gerações"
+                    id="generations-modal"
+                >
+                    <div
+                        id="generations-container"
+                        ref={generationsContainer}
+                        onClick={removeErrorFeedback}
+                    >
+                        <h6>
+                            Selecione quais gerações deseja incluir ao jogo:
+                        </h6>
+                        <div id="generations-options">
+                            {generationsList.map((generation, index) => (
+                                <CustomCheckbox
+                                    key={index}
+                                    generation={generation}
+                                />
+                            ))}
+                        </div>
                     </div>
-                </div>
+                    <div className="modal-footer">
+                        <button
+                            type="button"
+                            data-dismiss="modal"
+                            aria-label="save and close"
+                        >
+                            Ok
+                        </button>
+                    </div>
+                </Modal>
             </div>
         </section>
     );
