@@ -1,22 +1,59 @@
 #game-interface {
     grid-area: gameInterface;
-    padding: 8px;
+    padding: 16px;
     display: flex;
+    flex-direction: column;
     align-items: center;
-    justify-content: center;
-}
+    justify-content: space-evenly;
 
-#game-options-container {
-    padding: 0.5rem 1rem;
-    border-radius: 8px;
+    .form-container {
+        width: 100%;
+
+        label {
+            display: block;
+            width: 100%;
+
+            span {
+                display: block;
+                font-size: 1rem;
+                font-weight: bold;
+                margin-bottom: 4px;
+            }
+
+            input {
+                display: block;
+                width: 100%;
+                padding: 8px;
+                font-size: 1.2rem;
+                border: 3px solid $primary-color;
+                border-radius: 8px;
+            }
+        }
+    }
 
     .btn-container {
+        width: 100%;
         display: grid;
         grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: repeat(2, auto);
+        grid-template-areas: 'btn1 btn2' 'btn3 btn3';
         grid-gap: 16px;
 
         button {
             @include btn-base($terciary-color, $light-color);
+
+            &:nth-child(1) {
+                grid-area: btn1;
+            }
+
+            &:nth-child(2) {
+                grid-area: btn2;
+            }
+
+            &:nth-child(3) {
+                grid-area: btn3;
+                background: $dark-color;
+            }
         }
     }
 }

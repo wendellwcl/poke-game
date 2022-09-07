@@ -27,56 +27,64 @@ const GameInterface = () => {
 
     return (
         <section id="game-interface">
-            <div id="game-options-container">
-                <div className="btn-container">
+            <form className="form-container">
+                <label htmlFor="guess-input">
+                    <span>Digite qual é:</span>
+                    <input
+                        type="text"
+                        list="datalist-species"
+                        aria-label="Digite qual é"
+                    />
+                </label>
+                <datalist id="datalist-species"></datalist>
+            </form>
+
+            <div className="btn-container">
+                <button
+                    type="button"
+                    onClick={handlePlay}
+                >
+                    Sortear outro
+                </button>
+                <button type="button">Revelar resposta</button>
+                <button
+                    type="button"
+                    onClick={openGenerationsModal}
+                >
+                    Selecionar Gerações
+                </button>
+            </div>
+
+            <Modal
+                title="Selecionar gerações"
+                id="generations-modal"
+            >
+                <div
+                    id="generations-container"
+                    ref={generationsContainer}
+                    onClick={removeErrorFeedback}
+                >
+                    <h6>Selecione quais gerações deseja incluir ao jogo:</h6>
+                    <div id="generations-options">
+                        {generationsList.map((generation, index) => (
+                            <CustomCheckbox
+                                key={index}
+                                generation={generation}
+                            />
+                        ))}
+                    </div>
+                </div>
+                <div className="modal-footer">
                     <button
                         type="button"
-                        onClick={handlePlay}
+                        className="confirm-btn"
+                        data-dismiss="modal"
+                        aria-label="save and close"
                     >
-                        Sortear outro
-                    </button>
-                    <button type="button">Revelar resposta</button>
-                    <button
-                        type="button"
-                        onClick={openGenerationsModal}
-                    >
-                        Selecionar Gerações
+                        Ok
                     </button>
                 </div>
-
-                <Modal
-                    title="Selecionar gerações"
-                    id="generations-modal"
-                >
-                    <div
-                        id="generations-container"
-                        ref={generationsContainer}
-                        onClick={removeErrorFeedback}
-                    >
-                        <h6>
-                            Selecione quais gerações deseja incluir ao jogo:
-                        </h6>
-                        <div id="generations-options">
-                            {generationsList.map((generation, index) => (
-                                <CustomCheckbox
-                                    key={index}
-                                    generation={generation}
-                                />
-                            ))}
-                        </div>
-                    </div>
-                    <div className="modal-footer">
-                        <button
-                            type="button"
-                            className="confirm-btn"
-                            data-dismiss="modal"
-                            aria-label="save and close"
-                        >
-                            Ok
-                        </button>
-                    </div>
-                </Modal>
-            </div>
+            </Modal>
         </section>
     );
 };
