@@ -1,11 +1,14 @@
 import { useContext, useRef, useEffect } from 'react';
+import { BsArrowRightCircleFill } from 'react-icons/bs';
+
 import { DataContext } from '../../contexts/DataContext';
 
 import CustomCheckbox from '../CustomCheckbox';
 import Modal from '../Modal';
 
 const GameInterface = () => {
-    const { generationsList, handlePlay } = useContext(DataContext);
+    const { generationsList, speciesList, handlePlay } =
+        useContext(DataContext);
 
     const generationsContainer = useRef();
 
@@ -25,18 +28,37 @@ const GameInterface = () => {
         document.querySelector('#generations-modal').classList.add('show');
     }
 
+    // function handleGuess(e) {
+    //     e.preventDefault();
+    //     console.log(e.target);
+    // }
+
+    // onSubmit={(e) => handleGuess(e)}
+
     return (
         <section id="game-interface">
             <form className="form-container">
                 <label htmlFor="guess-input">
                     <span>Digite qual é:</span>
-                    <input
-                        type="text"
-                        list="datalist-species"
-                        aria-label="Digite qual é"
-                    />
+                    <div>
+                        <input
+                            type="text"
+                            list="datalist-species"
+                            aria-label="Digite qual é"
+                        />
+                        <button type="submit">
+                            <BsArrowRightCircleFill />
+                        </button>
+                    </div>
                 </label>
-                <datalist id="datalist-species"></datalist>
+                <datalist id="datalist-species">
+                    {speciesList.map((specie, index) => (
+                        <option
+                            key={index}
+                            value={specie.name}
+                        />
+                    ))}
+                </datalist>
             </form>
 
             <div className="btn-container">

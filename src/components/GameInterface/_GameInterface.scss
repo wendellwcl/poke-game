@@ -20,13 +20,35 @@
                 margin-bottom: 4px;
             }
 
-            input {
-                display: block;
-                width: 100%;
-                padding: 8px;
-                font-size: 1.2rem;
+            div {
                 border: 3px solid $primary-color;
+                font-size: 1.2rem;
+                display: flex;
+                overflow: hidden;
                 border-radius: 8px;
+                font-size: 1.2rem;
+
+                input {
+                    display: inline-block;
+                    width: 100%;
+                    height: 100%;
+                    padding: 8px;
+                    border: none;
+                    font-size: inherit;
+                }
+
+                button {
+                    min-width: 64px;
+                    display: grid;
+                    place-items: center;
+                    padding: 0 16px;
+                    background: $primary-color;
+                    border: none;
+                    border-radius: 0;
+                    font-size: inherit;
+                    color: $light-color;
+                    cursor: pointer;
+                }
             }
         }
     }
