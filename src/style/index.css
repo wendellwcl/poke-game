@@ -50,8 +50,7 @@ body {
   padding: 32px;
   position: relative;
 }
-
-#poke-display img {
+#poke-display #poke-img {
   position: absolute;
   top: 50%;
   left: 50%;
@@ -61,7 +60,11 @@ body {
   height: 70%;
   -o-object-fit: contain;
      object-fit: contain;
+  transition: 1s;
   filter: brightness(0);
+}
+#poke-display #poke-img.show {
+  filter: brightness(1);
 }
 
 .custom-checkbox-label {

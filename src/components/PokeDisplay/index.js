@@ -9,6 +9,7 @@ const PokeDisplay = () => {
             <img
                 src={poke.sprites.other['official-artwork'].front_default}
                 alt=""
+                id="poke-img"
             />
         </section>
     );

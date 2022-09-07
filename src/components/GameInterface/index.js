@@ -7,7 +7,7 @@ import CustomCheckbox from '../CustomCheckbox';
 import Modal from '../Modal';
 
 const GameInterface = () => {
-    const { generationsList, speciesList, handlePlay } =
+    const { generationsList, speciesList, poke, handlePlay } =
         useContext(DataContext);
 
     const generationsContainer = useRef();
@@ -28,23 +28,33 @@ const GameInterface = () => {
         document.querySelector('#generations-modal').classList.add('show');
     }
 
-    // function handleGuess(e) {
-    //     e.preventDefault();
-    //     console.log(e.target);
-    // }
+    function handleGuess(e) {
+        e.preventDefault();
+        const res = document.querySelector('#guess-input').value;
 
-    // onSubmit={(e) => handleGuess(e)}
+        if (res === poke.name) {
+            document.querySelector('#poke-img').classList.add('show');
+        } else {
+            const el = document.querySelector('#guess-input');
+            el.value = '';
+        }
+    }
 
     return (
         <section id="game-interface">
-            <form className="form-container">
+            <form
+                className="form-container"
+                onSubmit={(e) => handleGuess(e)}
+            >
                 <label htmlFor="guess-input">
                     <span>Digite qual é:</span>
                     <div>
                         <input
                             type="text"
+                            id="guess-input"
                             list="datalist-species"
                             aria-label="Digite qual é"
+                            autoComplete="off"
                         />
                         <button type="submit">
                             <BsArrowRightCircleFill />
