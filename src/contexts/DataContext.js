@@ -6,6 +6,7 @@ export const DataContext = createContext();
 export const DataContextProvider = ({ children }) => {
     const [loading, setLoading] = useState(true);
     const [generationsList, setGenerationsList] = useState([]);
+    const [speciesList, setSpeciesList] = useState();
     const [poke, setPoke] = useState();
 
     const noGenerationChecked = new Event('noGererationChecked');
@@ -23,6 +24,7 @@ export const DataContextProvider = ({ children }) => {
         }
 
         const species = getSpecies(selectedGenerations);
+        setSpeciesList(species);
 
         const randomPoke = drawPoke(species);
 
@@ -96,7 +98,7 @@ export const DataContextProvider = ({ children }) => {
 
     return (
         <DataContext.Provider
-            value={{ generationsList, loading, poke, handlePlay }}
+            value={{ loading, generationsList, speciesList, poke, handlePlay }}
         >
             {children}
         </DataContext.Provider>
