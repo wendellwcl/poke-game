@@ -63,6 +63,7 @@
 
         button {
             @include btn-base($terciary-color, $light-color);
+            transition: 0.5s;
 
             &:nth-child(1) {
                 grid-area: btn1;
@@ -75,6 +76,11 @@
             &:nth-child(3) {
                 grid-area: btn3;
                 background: $dark-color;
+            }
+
+            &:disabled {
+                opacity: 0.5;
+                cursor: not-allowed;
             }
         }
     }

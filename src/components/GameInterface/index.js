@@ -48,13 +48,21 @@ const GameInterface = () => {
         }
     }
 
-    function drawAnotherPoke() {
+    function handleDrawAnotherPoke() {
         if (!alreadyAnswered) {
-            document.querySelector('#no-answered-modal').classList.add('show');
+            document
+                .querySelector('#draw-another-confirmation-modal')
+                .classList.add('show');
             return;
         }
 
         handlePlay();
+    }
+
+    function handleRevealAnswer() {
+        document
+            .querySelector('#reveal-confirmation-modal')
+            .classList.add('show');
     }
 
     function revealAnswer() {
@@ -96,13 +104,14 @@ const GameInterface = () => {
             <div className="btn-container">
                 <button
                     type="button"
-                    onClick={drawAnotherPoke}
+                    onClick={handleDrawAnotherPoke}
                 >
                     Sortear outro
                 </button>
                 <button
                     type="button"
-                    onClick={revealAnswer}
+                    onClick={handleRevealAnswer}
+                    disabled={alreadyAnswered}
                 >
                     Revelar resposta
                 </button>
@@ -116,12 +125,13 @@ const GameInterface = () => {
 
             <Modal
                 title="Tem certeza ?"
-                id="no-answered-modal"
+                id="draw-another-confirmation-modal"
             >
                 <div>
                     <p>
                         Você ainda não adivinhou o desafio atual, quer mesmo
-                        sortear outro?
+                        sortear outro? Você também pode revelar a resposta antes
+                        de prosseguir.
                     </p>
                 </div>
                 <div className="modal-footer">
@@ -136,9 +146,43 @@ const GameInterface = () => {
                         type="button"
                         className="confirm-btn"
                         data-dismiss="modal"
+                        onClick={revealAnswer}
+                    >
+                        Revelar resposta
+                    </button>
+                    <button
+                        type="button"
+                        className="confirm-btn"
+                        data-dismiss="modal"
                         onClick={handlePlay}
                     >
-                        Sim, continuar
+                        Sortear outro
+                    </button>
+                </div>
+            </Modal>
+
+            <Modal
+                title="Revelar resposta ?"
+                id="reveal-confirmation-modal"
+            >
+                <div>
+                    <p>Quer mesmo revelar a resposta ? ...</p>
+                </div>
+                <div className="modal-footer">
+                    <button
+                        type="button"
+                        className="cancel-btn"
+                        data-dismiss="modal"
+                    >
+                        Voltar
+                    </button>
+                    <button
+                        type="button"
+                        className="confirm-btn"
+                        data-dismiss="modal"
+                        onClick={revealAnswer}
+                    >
+                        Revelar
                     </button>
                 </div>
             </Modal>

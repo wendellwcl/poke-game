@@ -166,6 +166,7 @@ body {
   color: #f4f4fa;
   font-weight: bold;
   cursor: pointer;
+  transition: 0.5s;
 }
 #game-interface .btn-container button:nth-child(1) {
   grid-area: btn1;
@@ -176,6 +177,10 @@ body {
 #game-interface .btn-container button:nth-child(3) {
   grid-area: btn3;
   background: #212529;
+}
+#game-interface .btn-container button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
 }
 
 #generations-container {
