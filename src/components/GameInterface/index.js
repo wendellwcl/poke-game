@@ -30,14 +30,19 @@ const GameInterface = () => {
 
     function handleGuess(e) {
         e.preventDefault();
-        const res = document.querySelector('#guess-input').value;
+
+        const inputEl = document.querySelector('#guess-input');
+        const res = inputEl.value;
 
         if (res === poke.name) {
-            document.querySelector('#poke-img').classList.add('show');
+            revealAnswer();
         } else {
-            const el = document.querySelector('#guess-input');
-            el.value = '';
+            inputEl.value = '';
         }
+    }
+
+    function revealAnswer() {
+        document.querySelector('#poke-img').classList.add('show');
     }
 
     return (
@@ -78,7 +83,12 @@ const GameInterface = () => {
                 >
                     Sortear outro
                 </button>
-                <button type="button">Revelar resposta</button>
+                <button
+                    type="button"
+                    onClick={revealAnswer}
+                >
+                    Revelar resposta
+                </button>
                 <button
                     type="button"
                     onClick={openGenerationsModal}
