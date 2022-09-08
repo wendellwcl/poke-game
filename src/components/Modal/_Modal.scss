@@ -65,7 +65,7 @@
             }
 
             .cancel-btn {
-                @include btn-base(#c2c2c2, $dark-color);
+                @include btn-base($terciary-color, $light-color);
             }
 
             .confirm-btn {

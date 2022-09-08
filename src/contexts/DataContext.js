@@ -8,11 +8,13 @@ export const DataContextProvider = ({ children }) => {
     const [generationsList, setGenerationsList] = useState([]);
     const [speciesList, setSpeciesList] = useState();
     const [poke, setPoke] = useState();
+    const [alreadyAnswered, setAlreadyAnswered] = useState(false);
 
     const noGenerationChecked = new Event('noGererationChecked');
 
     const handlePlay = useCallback(async () => {
         setLoading(true);
+        setAlreadyAnswered(false);
 
         const selectedGenerations = generationsList.filter(
             (generation) => generation.isChecked === true
@@ -98,7 +100,15 @@ export const DataContextProvider = ({ children }) => {
 
     return (
         <DataContext.Provider
-            value={{ loading, generationsList, speciesList, poke, handlePlay }}
+            value={{
+                loading,
+                generationsList,
+                speciesList,
+                poke,
+                alreadyAnswered,
+                setAlreadyAnswered,
+                handlePlay,
+            }}
         >
             {children}
         </DataContext.Provider>

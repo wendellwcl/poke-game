@@ -256,10 +256,10 @@ body {
   display: block;
   min-width: 64px;
   padding: 8px;
-  background: #c2c2c2;
+  background: #dc2e1b;
   border: none;
   border-radius: 8px;
-  color: #212529;
+  color: #f4f4fa;
   font-weight: bold;
   cursor: pointer;
 }

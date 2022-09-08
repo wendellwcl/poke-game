@@ -7,8 +7,14 @@ import CustomCheckbox from '../CustomCheckbox';
 import Modal from '../Modal';
 
 const GameInterface = () => {
-    const { generationsList, speciesList, poke, handlePlay } =
-        useContext(DataContext);
+    const {
+        generationsList,
+        speciesList,
+        poke,
+        alreadyAnswered,
+        setAlreadyAnswered,
+        handlePlay,
+    } = useContext(DataContext);
 
     const generationsContainer = useRef();
 
@@ -36,13 +42,24 @@ const GameInterface = () => {
 
         if (res === poke.name) {
             revealAnswer();
+            setAlreadyAnswered(true);
         } else {
             inputEl.value = '';
         }
     }
 
+    function drawAnotherPoke() {
+        if (!alreadyAnswered) {
+            document.querySelector('#no-answered-modal').classList.add('show');
+            return;
+        }
+
+        handlePlay();
+    }
+
     function revealAnswer() {
         document.querySelector('#poke-img').classList.add('show');
+        setAlreadyAnswered(true);
     }
 
     return (
@@ -79,7 +96,7 @@ const GameInterface = () => {
             <div className="btn-container">
                 <button
                     type="button"
-                    onClick={handlePlay}
+                    onClick={drawAnotherPoke}
                 >
                     Sortear outro
                 </button>
@@ -96,6 +113,35 @@ const GameInterface = () => {
                     Selecionar Gerações
                 </button>
             </div>
+
+            <Modal
+                title="Tem certeza ?"
+                id="no-answered-modal"
+            >
+                <div>
+                    <p>
+                        Você ainda não adivinhou o desafio atual, quer mesmo
+                        sortear outro?
+                    </p>
+                </div>
+                <div className="modal-footer">
+                    <button
+                        type="button"
+                        className="cancel-btn"
+                        data-dismiss="modal"
+                    >
+                        Voltar
+                    </button>
+                    <button
+                        type="button"
+                        className="confirm-btn"
+                        data-dismiss="modal"
+                        onClick={handlePlay}
+                    >
+                        Sim, continuar
+                    </button>
+                </div>
+            </Modal>
 
             <Modal
                 title="Selecionar gerações"
