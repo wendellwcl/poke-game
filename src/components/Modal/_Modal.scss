@@ -13,12 +13,13 @@
     .modal-fade {
         position: fixed;
         inset: 0;
-        background: rgba(#000000, 0.6); //PROVISIONAL
+        background: rgba(#000, 0.8);
         z-index: inherit;
     }
 
     .modal-body {
-        background-color: #f4f4fa; //PROVISIONAL
+        background-color: $secondary-color;
+        border: 3px solid $primary-color;
         border-radius: 8px;
         max-width: 600px;
         min-width: 200px;
@@ -29,7 +30,7 @@
     .modal-header {
         padding-bottom: 8px;
         margin-bottom: 16px;
-        border-bottom: 1px solid gray; //PROVISIONAL
+        border-bottom: 1px solid $primary-color;
         display: flex;
         align-items: center;
         justify-content: space-between;
@@ -37,11 +38,13 @@
         button {
             align-self: flex-start;
             margin-left: auto;
+            padding: 12px;
             display: grid;
             place-items: center;
             background: none;
             border: none;
-            padding: 12px;
+            color: $primary-color;
+            font-size: 1.2rem;
             cursor: pointer;
 
             svg {
@@ -58,6 +61,7 @@
 
             button {
                 margin-left: 16px;
+                font-size: 0.9rem;
             }
 
             .cancel-btn {

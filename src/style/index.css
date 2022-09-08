@@ -87,7 +87,7 @@ body {
 .custom-checkbox-label .custom-checkbox-box {
   width: 16px;
   height: 16px;
-  border: 2px solid #212529;
+  border: 3px solid #212529;
   border-radius: 4px;
   margin-right: 0.5rem;
 }
@@ -181,10 +181,6 @@ body {
 #generations-container {
   padding: 0.5rem;
   border-radius: 8px;
-  border: 2px solid #212529;
-}
-#generations-container.error-feedback {
-  border: 2px solid #dc2e1b;
 }
 #generations-container h6 {
   font-size: 1rem;
@@ -212,11 +208,12 @@ body {
 .modal .modal-fade {
   position: fixed;
   inset: 0;
-  background: rgba(0, 0, 0, 0.6);
+  background: rgba(0, 0, 0, 0.8);
   z-index: inherit;
 }
 .modal .modal-body {
-  background-color: #f4f4fa;
+  background-color: #f7d525;
+  border: 3px solid #306ab1;
   border-radius: 8px;
   max-width: 600px;
   min-width: 200px;
@@ -226,7 +223,7 @@ body {
 .modal .modal-header {
   padding-bottom: 8px;
   margin-bottom: 16px;
-  border-bottom: 1px solid gray;
+  border-bottom: 1px solid #306ab1;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -234,11 +231,13 @@ body {
 .modal .modal-header button {
   align-self: flex-start;
   margin-left: auto;
+  padding: 12px;
   display: grid;
   place-items: center;
   background: none;
   border: none;
-  padding: 12px;
+  color: #306ab1;
+  font-size: 1.2rem;
   cursor: pointer;
 }
 .modal .modal-header button svg {
@@ -251,6 +250,7 @@ body {
 }
 .modal .modal-dialog .modal-footer button {
   margin-left: 16px;
+  font-size: 0.9rem;
 }
 .modal .modal-dialog .modal-footer .cancel-btn {
   display: block;

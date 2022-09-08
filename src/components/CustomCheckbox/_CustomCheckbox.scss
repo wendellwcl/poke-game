@@ -19,13 +19,13 @@
     .custom-checkbox-box {
         width: 16px;
         height: 16px;
-        border: 2px solid $dark-color; //PROVISIONAL
+        border: 3px solid $dark-color;
         border-radius: 4px;
         margin-right: 0.5rem;
     }
 
     input:checked ~ .custom-checkbox-box {
-        background: $terciary-color; //PROVISIONAL
+        background: $terciary-color;
     }
 
     .custom-checkbox-text {
