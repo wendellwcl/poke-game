@@ -10,20 +10,21 @@ export const DataContextProvider = ({ children }) => {
     const [poke, setPoke] = useState();
     const [alreadyAnswered, setAlreadyAnswered] = useState(false);
 
-    const noGenerationChecked = new Event('noGererationChecked');
-
     const handlePlay = useCallback(async () => {
-        setLoading(true);
-        setAlreadyAnswered(false);
-
         const selectedGenerations = generationsList.filter(
             (generation) => generation.isChecked === true
         );
 
         if (selectedGenerations.length < 1) {
-            window.dispatchEvent(noGenerationChecked);
+            setLoading(false);
+            document
+                .querySelector('#no-generation-checked')
+                .classList.add('show');
             return;
         }
+
+        setLoading(true);
+        setAlreadyAnswered(false);
 
         const species = getSpecies(selectedGenerations);
         setSpeciesList(species);
