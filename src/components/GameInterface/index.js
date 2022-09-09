@@ -217,6 +217,29 @@ const GameInterface = () => {
                     </button>
                 </div>
             </Modal>
+
+            <Modal
+                title="Nenhuma Geração selecionada"
+                id="no-generation-checked"
+            >
+                <div>
+                    <p>
+                        Nenhuma Geração está selecionada. Por favor, selecione
+                        pelo menos uma ou mais Gerações para prosseguir com o
+                        jogo.
+                    </p>
+                </div>
+                <div className="modal-footer">
+                    <button
+                        type="button"
+                        className="confirm-btn"
+                        data-dismiss="modal"
+                        onClick={openGenerationsModal}
+                    >
+                        Selecionar Gerações
+                    </button>
+                </div>
+            </Modal>
         </section>
     );
 };
