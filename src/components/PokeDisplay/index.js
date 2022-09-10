@@ -13,7 +13,7 @@ const PokeDisplay = () => {
             />
             <h6
                 id="poke-name"
-                className={alreadyAnswered && 'show'}
+                className={alreadyAnswered ? 'show' : undefined}
             >
                 {poke.name}
             </h6>
