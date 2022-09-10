@@ -66,6 +66,24 @@ body {
 #poke-display #poke-img.show {
   filter: brightness(1);
 }
+#poke-display #poke-name {
+  position: absolute;
+  bottom: 0%;
+  left: 50%;
+  transform: translate(-50%, 0);
+  font-size: 2rem;
+  opacity: 0;
+  transition: 0.5s;
+}
+#poke-display #poke-name.show {
+  bottom: 10%;
+  opacity: 1;
+}
+@media screen and (min-width: 768px) {
+  #poke-display #poke-name {
+    font-size: 3rem;
+  }
+}
 
 .custom-checkbox-label {
   display: flex;

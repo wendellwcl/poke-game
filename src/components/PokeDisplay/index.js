@@ -2,7 +2,7 @@ import { useContext } from 'react';
 import { DataContext } from '../../contexts/DataContext';
 
 const PokeDisplay = () => {
-    const { poke } = useContext(DataContext);
+    const { poke, alreadyAnswered } = useContext(DataContext);
 
     return (
         <section id="poke-display">
@@ -11,6 +11,12 @@ const PokeDisplay = () => {
                 alt=""
                 id="poke-img"
             />
+            <h6
+                id="poke-name"
+                className={alreadyAnswered && 'show'}
+            >
+                {poke.name}
+            </h6>
         </section>
     );
 };
