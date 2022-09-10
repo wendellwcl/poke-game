@@ -16,6 +16,8 @@ const GameInterface = () => {
         handlePlay,
     } = useContext(DataContext);
 
+    const [hintReveled, setHintReveled] = useState(false);
+
     const generationsContainer = useRef();
 
     useEffect(() => {
@@ -48,6 +50,18 @@ const GameInterface = () => {
         }
     }
 
+    function revealHint() {
+        setHintReveled(true);
+
+        let hint = Array.from(poke.name);
+        hint = hint.fill('_', 2);
+        hint = hint.join();
+        hint = hint.replaceAll(',', ' ');
+
+        const el = document.querySelector('#hint');
+        el.textContent = hint;
+    }
+
     function handleDrawAnotherPoke() {
         if (!alreadyAnswered) {
             document
@@ -72,34 +86,46 @@ const GameInterface = () => {
 
     return (
         <section id="game-interface">
-            <form
-                className="form-container"
-                onSubmit={(e) => handleGuess(e)}
-            >
-                <label htmlFor="guess-input">
-                    <span>Digite qual é:</span>
-                    <div>
-                        <input
-                            type="text"
-                            id="guess-input"
-                            list="datalist-species"
-                            aria-label="Digite qual é"
-                            autoComplete="off"
-                        />
-                        <button type="submit">
-                            <BsArrowRightCircleFill />
-                        </button>
-                    </div>
-                </label>
-                <datalist id="datalist-species">
-                    {speciesList.map((specie, index) => (
-                        <option
-                            key={index}
-                            value={specie.name}
-                        />
-                    ))}
-                </datalist>
-            </form>
+            <div id="guess-container">
+                <form
+                    id="form-container"
+                    onSubmit={(e) => handleGuess(e)}
+                >
+                    <label htmlFor="guess-input">
+                        <span>Digite qual é:</span>
+                        <div>
+                            <input
+                                type="text"
+                                id="guess-input"
+                                list="datalist-species"
+                                aria-label="Digite qual é"
+                                autoComplete="off"
+                            />
+                            <button type="submit">
+                                <BsArrowRightCircleFill />
+                            </button>
+                        </div>
+                    </label>
+                    <datalist id="datalist-species">
+                        {speciesList.map((specie, index) => (
+                            <option
+                                key={index}
+                                value={specie.name}
+                            />
+                        ))}
+                    </datalist>
+                </form>
+                <div id="hint-container">
+                    <button
+                        type="button"
+                        id="hint-btn"
+                        onClick={revealHint}
+                    >
+                        {hintReveled ? 'Dica:' : 'Revelar Dica'}
+                    </button>
+                    <span id="hint"></span>
+                </div>
+            </div>
 
             <div className="btn-container">
                 <button
