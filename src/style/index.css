@@ -125,47 +125,6 @@ body {
   align-items: center;
   justify-content: space-evenly;
 }
-#game-interface .form-container {
-  width: 100%;
-}
-#game-interface .form-container label {
-  display: block;
-  width: 100%;
-}
-#game-interface .form-container label span {
-  display: block;
-  font-size: 1rem;
-  font-weight: bold;
-  margin-bottom: 4px;
-}
-#game-interface .form-container label div {
-  border: 3px solid #306ab1;
-  font-size: 1.2rem;
-  display: flex;
-  overflow: hidden;
-  border-radius: 8px;
-  font-size: 1.2rem;
-}
-#game-interface .form-container label div input {
-  display: inline-block;
-  width: 100%;
-  height: 100%;
-  padding: 8px;
-  border: none;
-  font-size: inherit;
-}
-#game-interface .form-container label div button {
-  min-width: 64px;
-  display: grid;
-  place-items: center;
-  padding: 0 16px;
-  background: #306ab1;
-  border: none;
-  border-radius: 0;
-  font-size: inherit;
-  color: #f4f4fa;
-  cursor: pointer;
-}
 #game-interface .btn-container {
   width: 100%;
   display: grid;
@@ -199,6 +158,72 @@ body {
 #game-interface .btn-container button:disabled {
   opacity: 0.5;
   cursor: not-allowed;
+}
+
+#guess-container {
+  width: 100%;
+}
+#guess-container #form-container {
+  width: 100%;
+}
+#guess-container #form-container label {
+  display: block;
+  width: 100%;
+}
+#guess-container #form-container label span {
+  display: block;
+  font-size: 1rem;
+  font-weight: bold;
+  margin-bottom: 4px;
+}
+#guess-container #form-container label div {
+  border: 3px solid #306ab1;
+  font-size: 1.2rem;
+  display: flex;
+  overflow: hidden;
+  border-radius: 8px;
+  font-size: 1.2rem;
+}
+#guess-container #form-container label div input {
+  display: inline-block;
+  width: 100%;
+  height: 100%;
+  padding: 8px;
+  border: none;
+  font-size: inherit;
+}
+#guess-container #form-container label div button {
+  min-width: 64px;
+  display: grid;
+  place-items: center;
+  padding: 0 16px;
+  background: #306ab1;
+  border: none;
+  border-radius: 0;
+  font-size: inherit;
+  color: #f4f4fa;
+  cursor: pointer;
+}
+#guess-container #hint-container {
+  margin-top: 16px;
+  display: flex;
+  align-items: center;
+}
+#guess-container #hint-container #hint-btn {
+  display: block;
+  min-width: 64px;
+  padding: 8px;
+  background: #306ab1;
+  border: none;
+  border-radius: 8px;
+  color: #f4f4fa;
+  font-weight: bold;
+  cursor: pointer;
+  margin-right: 8px;
+}
+#guess-container #hint-container #hint {
+  font-size: 1.2rem;
+  font-weight: bold;
 }
 
 #generations-container {

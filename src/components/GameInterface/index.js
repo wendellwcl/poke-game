@@ -1,4 +1,4 @@
-import { useContext, useRef, useEffect } from 'react';
+import { useContext, useRef, useEffect, useState } from 'react';
 import { BsArrowRightCircleFill } from 'react-icons/bs';
 
 import { DataContext } from '../../contexts/DataContext';

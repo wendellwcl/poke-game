@@ -6,7 +6,43 @@
     align-items: center;
     justify-content: space-evenly;
 
-    .form-container {
+    .btn-container {
+        width: 100%;
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: repeat(2, auto);
+        grid-template-areas: 'btn1 btn2' 'btn3 btn3';
+        grid-gap: 16px;
+
+        button {
+            @include btn-base($terciary-color, $light-color);
+            transition: 0.5s;
+
+            &:nth-child(1) {
+                grid-area: btn1;
+            }
+
+            &:nth-child(2) {
+                grid-area: btn2;
+            }
+
+            &:nth-child(3) {
+                grid-area: btn3;
+                background: $dark-color;
+            }
+
+            &:disabled {
+                opacity: 0.5;
+                cursor: not-allowed;
+            }
+        }
+    }
+}
+
+#guess-container {
+    width: 100%;
+
+    #form-container {
         width: 100%;
 
         label {
@@ -53,35 +89,19 @@
         }
     }
 
-    .btn-container {
-        width: 100%;
-        display: grid;
-        grid-template-columns: repeat(2, 1fr);
-        grid-template-rows: repeat(2, auto);
-        grid-template-areas: 'btn1 btn2' 'btn3 btn3';
-        grid-gap: 16px;
+    #hint-container {
+        margin-top: 16px;
+        display: flex;
+        align-items: center;
 
-        button {
-            @include btn-base($terciary-color, $light-color);
-            transition: 0.5s;
+        #hint-btn {
+            @include btn-base($primary-color, $light-color);
+            margin-right: 8px;
+        }
 
-            &:nth-child(1) {
-                grid-area: btn1;
-            }
-
-            &:nth-child(2) {
-                grid-area: btn2;
-            }
-
-            &:nth-child(3) {
-                grid-area: btn3;
-                background: $dark-color;
-            }
-
-            &:disabled {
-                opacity: 0.5;
-                cursor: not-allowed;
-            }
+        #hint {
+            font-size: 1.2rem;
+            font-weight: bold;
         }
     }
 }
