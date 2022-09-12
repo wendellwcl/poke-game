@@ -31,9 +31,9 @@ export const DataContextProvider = ({ children }) => {
 
         const randomPoke = drawPoke(species);
 
-        const pokeData = await fetchJSON(
-            `https://pokeapi.co/api/v2/pokemon/${randomPoke.name}`
-        );
+        const specieData = await fetchJSON(randomPoke.url);
+
+        const pokeData = await fetchJSON(specieData.varieties[0].pokemon.url);
 
         setPoke(pokeData);
         setLoading(false);
