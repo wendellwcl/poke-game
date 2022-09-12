@@ -2,7 +2,7 @@
     grid-area: pokeDisplay;
     width: 100%;
     height: 100%;
-    padding: 32px;
+    padding: 16px;
     position: relative;
 
     #poke-img {
@@ -11,14 +11,14 @@
         left: 50%;
         transform: translate(-50%, -50%);
         display: block;
-        width: 70%;
-        height: 70%;
+        width: 80%;
+        height: 80%;
         object-fit: contain;
+        filter: brightness(0) drop-shadow(3px 3px $mainColor-saturedTone);
         transition: 1s;
-        filter: brightness(0);
 
         &.show {
-            filter: brightness(1);
+            filter: brightness(1) drop-shadow(3px 3px $mainColor-saturedTone);
         }
     }
 
@@ -27,17 +27,21 @@
         bottom: 0%;
         left: 50%;
         transform: translate(-50%, 0);
-        font-size: 2rem;
+        font-family: $styled-font;
+        font-size: 3rem;
+        color: $mainColor-superDarkTone;
+        text-transform: capitalize;
+        letter-spacing: 4px;
         opacity: 0;
         transition: 0.5s;
 
         &.show {
-            bottom: 10%;
+            bottom: 5%;
             opacity: 1;
         }
 
         @media screen and (min-width: 768px) {
-            font-size: 3rem;
+            font-size: 4rem;
         }
     }
 }

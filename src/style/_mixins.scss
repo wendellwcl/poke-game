@@ -1,11 +1,12 @@
 @mixin btn-base($bg-color: $light-color, $font-color: $dark-color) {
     display: block;
     min-width: 64px;
-    padding: 8px;
-    background: $bg-color;
+    padding: 8px 16px;
+    background: linear-gradient(90deg, $bg-color, adjust-hue($bg-color, 30deg));
     border: none;
-    border-radius: 8px;
+    border-radius: 64px;
     color: $font-color;
     font-weight: bold;
+    letter-spacing: 1px;
     cursor: pointer;
 }

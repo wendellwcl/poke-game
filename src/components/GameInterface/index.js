@@ -1,5 +1,5 @@
 import { useContext, useRef, useEffect, useState } from 'react';
-import { BsArrowRightCircleFill } from 'react-icons/bs';
+import { BsArrowRight } from 'react-icons/bs';
 
 import { DataContext } from '../../contexts/DataContext';
 
@@ -102,7 +102,7 @@ const GameInterface = () => {
                                 autoComplete="off"
                             />
                             <button type="submit">
-                                <BsArrowRightCircleFill />
+                                <BsArrowRight />
                             </button>
                         </div>
                     </label>
@@ -127,7 +127,7 @@ const GameInterface = () => {
                 </div>
             </div>
 
-            <div className="btn-container">
+            <div id="controls-btn-container">
                 <button
                     type="button"
                     onClick={handleDrawAnotherPoke}

@@ -1,4 +1,6 @@
 @import 'normalize.css';
+@import url('https://fonts.googleapis.com/css2?family=Francois+One&display=swap');
+
 @import 'variables';
 @import 'mixins';
 
@@ -10,19 +12,17 @@
 
 html,
 body {
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto',
-        'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans',
-        'Helvetica Neue', sans-serif;
+    font-family: 'Nunito', sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     color: $dark-color;
-    background: $primary-color;
+    background: $mainColor;
 }
 
 #root {
     width: 100%;
-    height: 100%;
-    padding: 32px;
+    height: 100vh;
+    padding: 16px;
 
     @media screen and (min-width: 768px) {
         height: 100vh;
@@ -31,19 +31,24 @@ body {
 
 .App {
     min-height: 100%;
-    background-color: $secondary-color;
-    border-radius: 16px;
-    box-shadow: 0px 0px 20px $dark-color;
+    background-color: $mainColor-superLightTone;
+    box-shadow: 0px 0px 5px 2px $mainColor-darkTone;
+    border-radius: 4px;
     display: grid;
     grid-template-columns: auto;
-    grid-template-rows: repeat(2, minMax(calc(50vh - 32px), auto));
+    grid-template-rows: repeat(2, minMax(calc(50vh - 16px), auto));
     grid-template-areas: 'pokeDisplay' 'gameInterface';
+    overflow: hidden;
 
     @media screen and (min-width: 768px) {
-        grid-template-columns: repeat(2, 1fr);
+        grid-template-columns: repeat(5, 1fr);
         grid-template-rows: auto;
-        grid-template-areas: 'pokeDisplay gameInterface';
+        grid-template-areas: 'pokeDisplay pokeDisplay pokeDisplay gameInterface gameInterface';
     }
+}
+
+.btn {
+    @include btn-base();
 }
 
 @import '../components/PokeDisplay/PokeDisplay';

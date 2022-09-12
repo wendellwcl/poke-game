@@ -2,55 +2,65 @@
     position: fixed;
     inset: 0;
     display: none;
-    place-items: center;
     padding: 32px;
     z-index: 10;
 
     &.show {
         display: grid;
+        place-items: center;
     }
 
     .modal-fade {
         position: fixed;
         inset: 0;
-        background: rgba(#000, 0.8);
+        background: rgba($mainColor-superDarkTone, 0.8);
         z-index: inherit;
     }
 
     .modal-body {
-        background-color: $secondary-color;
-        border: 3px solid $primary-color;
+        background-color: $light-color;
+        border: 3px solid $mainColor;
         border-radius: 8px;
         max-width: 600px;
         min-width: 200px;
         padding: 16px;
+        position: relative;
+        overflow: hidden;
         z-index: inherit;
+
+        .btn-close {
+            display: block;
+            width: 64px;
+            height: 48px;
+            position: absolute;
+            top: -2px;
+            right: -2px;
+            background: none;
+            border: none;
+            cursor: pointer;
+
+            .bg-btn-close {
+                fill: $mainColor;
+            }
+
+            .close-icon {
+                position: absolute;
+                top: 15%;
+                right: 15%;
+                font-size: 1.5rem;
+                color: $mainColor-superLightTone;
+            }
+        }
     }
 
     .modal-header {
         padding-bottom: 8px;
-        margin-bottom: 16px;
-        border-bottom: 1px solid $primary-color;
+        margin-bottom: 8px;
+        border-bottom: 1px solid $mainColor-desaturedTone;
+        color: $mainColor-superDarkTone;
         display: flex;
         align-items: center;
         justify-content: space-between;
-
-        button {
-            align-self: flex-start;
-            margin-left: auto;
-            padding: 12px;
-            display: grid;
-            place-items: center;
-            background: none;
-            border: none;
-            color: $primary-color;
-            font-size: 1.2rem;
-            cursor: pointer;
-
-            svg {
-                pointer-events: none;
-            }
-        }
     }
 
     .modal-dialog {
@@ -65,11 +75,12 @@
             }
 
             .cancel-btn {
-                @include btn-base($terciary-color, $light-color);
+                @include btn-base(transparent, $mainColor-darkTone);
+                border: 2px solid $mainColor-desaturedTone;
             }
 
             .confirm-btn {
-                @include btn-base($primary-color, $light-color);
+                @include btn-base($mainColor, $light-color);
             }
         }
     }
