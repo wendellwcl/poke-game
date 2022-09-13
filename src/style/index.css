@@ -30,7 +30,7 @@ body {
   min-height: 100%;
   background-color: #e9efff;
   box-shadow: 0px 0px 5px 2px #224b7d;
-  border-radius: 4px;
+  border-radius: 8px;
   display: grid;
   grid-template-columns: auto;
   grid-template-rows: repeat(2, minMax(calc(50vh - 16px), auto));
@@ -75,11 +75,11 @@ body {
   height: 80%;
   -o-object-fit: contain;
      object-fit: contain;
-  filter: brightness(0) drop-shadow(3px 3px #4497fc);
+  filter: brightness(0) drop-shadow(5px 5px #90c1fc);
   transition: 1s;
 }
 #poke-display #poke-img.show {
-  filter: brightness(1) drop-shadow(3px 3px #4497fc);
+  filter: brightness(1) drop-shadow(5px 5px #90c1fc);
 }
 #poke-display #poke-name {
   position: absolute;
@@ -124,14 +124,13 @@ body {
 .custom-checkbox-label .custom-checkbox-box {
   width: 16px;
   height: 16px;
-  border: 2px solid #6c90bd;
+  border: 2px solid #f45a72;
   border-radius: 50%;
   margin-right: 0.5rem;
   transition: 0.2s;
 }
 .custom-checkbox-label input:checked ~ .custom-checkbox-box {
-  border: 2px solid #4497fc;
-  background: #4497fc;
+  background: #f45a72;
 }
 .custom-checkbox-label .custom-checkbox-text {
   text-transform: capitalize;
@@ -165,7 +164,7 @@ body {
   margin-bottom: 4px;
 }
 #guess-container #form-container label div {
-  border: 3px solid #306ab1;
+  border: 3px solid #f45a72;
   font-size: 1.2rem;
   display: flex;
   overflow: hidden;
@@ -185,7 +184,7 @@ body {
   display: grid;
   place-items: center;
   padding: 0 16px;
-  background: #306ab1;
+  background: #f45a72;
   border: none;
   border-radius: 0;
   font-size: 1.2rem;

@@ -19,15 +19,14 @@
     .custom-checkbox-box {
         width: 16px;
         height: 16px;
-        border: 2px solid $mainColor-desaturedTone;
+        border: 2px solid $secondary-color;
         border-radius: 50%;
         margin-right: 0.5rem;
         transition: 0.2s;
     }
 
     input:checked ~ .custom-checkbox-box {
-        border: 2px solid $mainColor-saturedTone;
-        background: $mainColor-saturedTone;
+        background: $secondary-color;
     }
 
     .custom-checkbox-text {

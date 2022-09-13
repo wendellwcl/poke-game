@@ -14,11 +14,11 @@
         width: 80%;
         height: 80%;
         object-fit: contain;
-        filter: brightness(0) drop-shadow(3px 3px $mainColor-saturedTone);
+        filter: brightness(0) drop-shadow(5px 5px $mainColor-lightTone);
         transition: 1s;
 
         &.show {
-            filter: brightness(1) drop-shadow(3px 3px $mainColor-saturedTone);
+            filter: brightness(1) drop-shadow(5px 5px $mainColor-lightTone);
         }
     }
 
