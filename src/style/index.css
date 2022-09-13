@@ -45,19 +45,6 @@ body {
   }
 }
 
-.btn {
-  display: block;
-  min-width: 64px;
-  padding: 8px 16px;
-  background: linear-gradient(90deg, #f4f4fa, #f7f4fa);
-  border: none;
-  border-radius: 64px;
-  color: #212529;
-  font-weight: bold;
-  letter-spacing: 1px;
-  cursor: pointer;
-}
-
 #poke-display {
   grid-area: pokeDisplay;
   width: 100%;
@@ -65,7 +52,8 @@ body {
   padding: 16px;
   position: relative;
 }
-#poke-display #poke-img {
+
+#poke-img {
   position: absolute;
   top: 50%;
   left: 50%;
@@ -78,10 +66,11 @@ body {
   filter: brightness(0) drop-shadow(5px 5px #90c1fc);
   transition: 1s;
 }
-#poke-display #poke-img.show {
+#poke-img.show {
   filter: brightness(1) drop-shadow(5px 5px #90c1fc);
 }
-#poke-display #poke-name {
+
+#poke-name {
   position: absolute;
   bottom: 0%;
   left: 50%;
@@ -94,12 +83,12 @@ body {
   opacity: 0;
   transition: 0.5s;
 }
-#poke-display #poke-name.show {
+#poke-name.show {
   bottom: 5%;
   opacity: 1;
 }
 @media screen and (min-width: 768px) {
-  #poke-display #poke-name {
+  #poke-name {
     font-size: 4rem;
   }
 }
@@ -149,28 +138,29 @@ body {
 
 #guess-container {
   width: 100%;
+  margin-bottom: 16px;
 }
-#guess-container #form-container {
+#guess-container form {
   width: 100%;
 }
-#guess-container #form-container label {
+#guess-container form label {
   display: block;
 }
-#guess-container #form-container label span {
+#guess-container form label span {
   display: block;
   font-size: 1rem;
   font-weight: bold;
   text-transform: uppercase;
   margin-bottom: 4px;
 }
-#guess-container #form-container label div {
+#guess-container form label .input-container {
   border: 3px solid #f45a72;
   font-size: 1.2rem;
   display: flex;
   overflow: hidden;
   border-radius: 64px;
 }
-#guess-container #form-container label div input {
+#guess-container form label .input-container #guess-input {
   display: block;
   width: 100%;
   padding: 8px 16px;
@@ -180,7 +170,7 @@ body {
   color: #000a14;
   letter-spacing: 1px;
 }
-#guess-container #form-container label div button {
+#guess-container form label .input-container button {
   display: grid;
   place-items: center;
   padding: 0 16px;
@@ -191,19 +181,20 @@ body {
   color: #f4f4fa;
   cursor: pointer;
 }
-#guess-container #form-container label div button svg {
+#guess-container form label .input-container button svg {
   color: #e9efff;
 }
-#guess-container #hint-container {
+
+#hint-container {
   margin-top: 16px;
   display: flex;
   align-items: center;
 }
-#guess-container #hint-container #hint-btn {
+#hint-container #hint-btn {
   display: block;
   min-width: 64px;
   padding: 8px 16px;
-  background: linear-gradient(90deg, #4497fc, #4d44fc);
+  background: linear-gradient(90deg, #f45a72, #f48f5a);
   border: none;
   border-radius: 64px;
   color: #f4f4fa;
@@ -212,13 +203,13 @@ body {
   cursor: pointer;
   margin-right: 8px;
 }
-#guess-container #hint-container #hint {
+#hint-container #hint {
   color: #000a14;
   font-size: 1.2rem;
   font-weight: bold;
 }
 
-#controls-btn-container {
+#controls-container {
   width: 100%;
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -226,7 +217,7 @@ body {
   grid-template-areas: "btn1 btn2" "btn3 btn3";
   grid-gap: 16px;
 }
-#controls-btn-container button {
+#controls-container button {
   display: block;
   min-width: 64px;
   padding: 8px 16px;
@@ -237,20 +228,20 @@ body {
   font-weight: bold;
   letter-spacing: 1px;
   cursor: pointer;
-  transition: 0.5s;
+  transition: 0.2s;
 }
-#controls-btn-container button:nth-child(1) {
+#controls-container button:nth-child(1) {
   grid-area: btn1;
 }
-#controls-btn-container button:nth-child(2) {
+#controls-container button:nth-child(2) {
   grid-area: btn2;
 }
-#controls-btn-container button:nth-child(3) {
+#controls-container button:nth-child(3) {
   grid-area: btn3;
   color: #224b7d;
   background: #90c1fc;
 }
-#controls-btn-container button:disabled {
+#controls-container button:disabled {
   opacity: 0.5;
   cursor: not-allowed;
 }
@@ -281,13 +272,15 @@ body {
   display: grid;
   place-items: center;
 }
-.modal .modal-fade {
+
+.modal-fade {
   position: fixed;
   inset: 0;
   background: rgba(0, 10, 20, 0.8);
   z-index: inherit;
 }
-.modal .modal-body {
+
+.modal-body {
   background-color: #f4f4fa;
   border: 3px solid #306ab1;
   border-radius: 8px;
@@ -298,7 +291,8 @@ body {
   overflow: hidden;
   z-index: inherit;
 }
-.modal .modal-body .btn-close {
+
+.btn-close-modal {
   display: block;
   width: 64px;
   height: 48px;
@@ -309,17 +303,18 @@ body {
   border: none;
   cursor: pointer;
 }
-.modal .modal-body .btn-close .bg-btn-close {
+.btn-close-modal .bg-btn-close {
   fill: #306ab1;
 }
-.modal .modal-body .btn-close .close-icon {
+.btn-close-modal .close-icon {
   position: absolute;
   top: 15%;
   right: 15%;
   font-size: 1.5rem;
   color: #e9efff;
 }
-.modal .modal-header {
+
+.modal-header {
   padding-bottom: 8px;
   margin-bottom: 8px;
   border-bottom: 1px solid #6c90bd;
@@ -328,16 +323,17 @@ body {
   align-items: center;
   justify-content: space-between;
 }
-.modal .modal-dialog .modal-footer {
+
+.modal-footer {
   margin-top: 16px;
   display: flex;
   justify-content: flex-end;
 }
-.modal .modal-dialog .modal-footer button {
+.modal-footer button {
   margin-left: 16px;
   font-size: 0.9rem;
 }
-.modal .modal-dialog .modal-footer .cancel-btn {
+.modal-footer .btn-back {
   display: block;
   min-width: 64px;
   padding: 8px 16px;
@@ -348,9 +344,9 @@ body {
   font-weight: bold;
   letter-spacing: 1px;
   cursor: pointer;
-  border: 2px solid #6c90bd;
+  border: 1px solid #6c90bd;
 }
-.modal .modal-dialog .modal-footer .confirm-btn {
+.modal-footer .btn-confirm {
   display: block;
   min-width: 64px;
   padding: 8px 16px;

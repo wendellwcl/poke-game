@@ -1,6 +1,8 @@
 import { createContext, useState, useEffect, useCallback } from 'react';
 import { fetchJSON } from '../helper/ReusableFunctions';
 
+import { showModal } from '../components/Modal';
+
 export const DataContext = createContext();
 
 export const DataContextProvider = ({ children }) => {
@@ -11,15 +13,10 @@ export const DataContextProvider = ({ children }) => {
     const [alreadyAnswered, setAlreadyAnswered] = useState(false);
 
     const handlePlay = useCallback(async () => {
-        const selectedGenerations = generationsList.filter(
-            (generation) => generation.isChecked === true
-        );
+        const selectedGenerations = checkGenerations();
 
         if (selectedGenerations.length < 1) {
-            setLoading(false);
-            document
-                .querySelector('#no-generation-checked')
-                .classList.add('show');
+            showModal('#no-generation-checked');
             return;
         }
 
@@ -82,6 +79,14 @@ export const DataContextProvider = ({ children }) => {
             handlePlay();
         }
     }, [generationsList, handlePlay]);
+
+    function checkGenerations() {
+        const selectedGenerations = generationsList.filter(
+            (generation) => generation.isChecked === true
+        );
+
+        return selectedGenerations;
+    }
 
     function getSpecies(generations) {
         let species = [];

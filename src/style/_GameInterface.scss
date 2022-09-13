@@ -9,8 +9,9 @@
 
 #guess-container {
     width: 100%;
+    margin-bottom: 16px;
 
-    #form-container {
+    form {
         width: 100%;
 
         label {
@@ -24,14 +25,14 @@
                 margin-bottom: 4px;
             }
 
-            div {
+            .input-container {
                 border: 3px solid $secondary-color;
                 font-size: 1.2rem;
                 display: flex;
                 overflow: hidden;
                 border-radius: 64px;
 
-                input {
+                #guess-input {
                     display: block;
                     width: 100%;
                     padding: 8px 16px;
@@ -60,26 +61,26 @@
             }
         }
     }
+}
 
-    #hint-container {
-        margin-top: 16px;
-        display: flex;
-        align-items: center;
+#hint-container {
+    margin-top: 16px;
+    display: flex;
+    align-items: center;
 
-        #hint-btn {
-            @include btn-base($mainColor-saturedTone, $light-color);
-            margin-right: 8px;
-        }
+    #hint-btn {
+        @include btn-base($secondary-color, $light-color);
+        margin-right: 8px;
+    }
 
-        #hint {
-            color: $mainColor-superDarkTone;
-            font-size: 1.2rem;
-            font-weight: bold;
-        }
+    #hint {
+        color: $mainColor-superDarkTone;
+        font-size: 1.2rem;
+        font-weight: bold;
     }
 }
 
-#controls-btn-container {
+#controls-container {
     width: 100%;
     display: grid;
     grid-template-columns: repeat(2, 1fr);
@@ -89,7 +90,7 @@
 
     button {
         @include btn-base($mainColor-saturedTone, $mainColor-superLightTone);
-        transition: 0.5s;
+        transition: 0.2s;
 
         &:nth-child(1) {
             grid-area: btn1;

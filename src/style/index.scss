@@ -47,10 +47,6 @@ body {
     }
 }
 
-.btn {
-    @include btn-base();
-}
-
 @import './PokeDisplay';
 @import './CustomCheckbox';
 @import './GameInterface';

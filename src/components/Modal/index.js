@@ -5,14 +5,24 @@ const Modal = ({ id, title, children }) => {
     const modal = useRef();
 
     useEffect(() => {
+        if (!title) {
+            console.warn(
+                'Development warning: The modal component expects to receive a title prop'
+            );
+        }
+    });
+
+    //Add click listener on elements that should close the modal
+    //Elements that have the [data-dismiss='modal'] attribute will receive the function closeModal, included props.children elements
+    useEffect(() => {
         const el = modal.current;
         const dismissTriggers = el.querySelectorAll('[data-dismiss]');
         dismissTriggers.forEach((el) => {
-            el.addEventListener('click', (e) => handleCloseModal(e.target));
+            el.addEventListener('click', (e) => closeModal(e.target));
         });
     });
 
-    function handleCloseModal(el) {
+    function closeModal(el) {
         let targetEl = el.parentNode;
 
         while (!targetEl.classList.contains('modal')) {
@@ -23,6 +33,7 @@ const Modal = ({ id, title, children }) => {
     }
 
     return (
+        //for a modal to be displayed on screen it must receive the class='show'
         <div
             className="modal"
             id={id}
@@ -36,7 +47,7 @@ const Modal = ({ id, title, children }) => {
             <div className="modal-body">
                 <button
                     type="button"
-                    className="btn-close"
+                    className="btn-close-modal"
                     data-dismiss="modal"
                     aria-label="close"
                 >
@@ -63,3 +74,8 @@ const Modal = ({ id, title, children }) => {
 };
 
 export default Modal;
+
+//Show Modal
+export function showModal(targetModal) {
+    document.querySelector(targetModal).classList.add('show');
+}

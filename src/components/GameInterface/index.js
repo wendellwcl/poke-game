@@ -1,10 +1,10 @@
-import { useContext, useRef, useEffect, useState } from 'react';
+import { useContext, useState } from 'react';
 import { BsArrowRight } from 'react-icons/bs';
 
 import { DataContext } from '../../contexts/DataContext';
 
 import CustomCheckbox from '../CustomCheckbox';
-import Modal from '../Modal';
+import Modal, { showModal } from '../Modal';
 
 const GameInterface = () => {
     const {
@@ -17,24 +17,6 @@ const GameInterface = () => {
     } = useContext(DataContext);
 
     const [hintReveled, setHintReveled] = useState(false);
-
-    const generationsContainer = useRef();
-
-    useEffect(() => {
-        window.addEventListener('noGererationChecked', () => {
-            const elTarget = generationsContainer.current;
-            elTarget.classList.add('error-feedback');
-        });
-    }, []);
-
-    function removeErrorFeedback() {
-        const elTarget = generationsContainer.current;
-        elTarget.classList.remove('error-feedback');
-    }
-
-    function openGenerationsModal() {
-        document.querySelector('#generations-modal').classList.add('show');
-    }
 
     function handleGuess(e) {
         e.preventDefault();
@@ -55,45 +37,32 @@ const GameInterface = () => {
 
         let hint = Array.from(poke.name);
         hint = hint.fill('_', 2);
-        hint = hint.join();
-        hint = hint.replaceAll(',', ' ');
+        hint = hint.join(' ');
 
         const el = document.querySelector('#hint');
         el.textContent = hint;
     }
 
-    function handleDrawAnotherPoke() {
+    function drawAnotherPoke() {
         if (!alreadyAnswered) {
-            document
-                .querySelector('#draw-another-confirmation-modal')
-                .classList.add('show');
+            showModal('#draw-another-confirmation-modal');
             return;
         }
 
         handlePlay();
     }
 
-    function handleRevealAnswer() {
-        document
-            .querySelector('#reveal-confirmation-modal')
-            .classList.add('show');
-    }
-
     function revealAnswer() {
-        document.querySelector('#poke-img').classList.add('show');
         setAlreadyAnswered(true);
     }
 
     return (
         <section id="game-interface">
             <div id="guess-container">
-                <form
-                    id="form-container"
-                    onSubmit={(e) => handleGuess(e)}
-                >
+                <form onSubmit={(e) => handleGuess(e)}>
                     <label htmlFor="guess-input">
                         <span>Digite qual é:</span>
-                        <div>
+                        <div className="input-container">
                             <input
                                 type="text"
                                 id="guess-input"
@@ -115,6 +84,7 @@ const GameInterface = () => {
                         ))}
                     </datalist>
                 </form>
+
                 <div id="hint-container">
                     <button
                         type="button"
@@ -127,50 +97,50 @@ const GameInterface = () => {
                 </div>
             </div>
 
-            <div id="controls-btn-container">
+            <div id="controls-container">
                 <button
                     type="button"
-                    onClick={handleDrawAnotherPoke}
+                    onClick={drawAnotherPoke}
                 >
                     Sortear outro
                 </button>
                 <button
                     type="button"
-                    onClick={handleRevealAnswer}
+                    onClick={() => showModal('#reveal-confirmation-modal')}
                     disabled={alreadyAnswered}
                 >
                     Revelar resposta
                 </button>
                 <button
                     type="button"
-                    onClick={openGenerationsModal}
+                    onClick={() => showModal('#generations-modal')}
                 >
                     Selecionar Gerações
                 </button>
             </div>
 
             <Modal
-                title="Tem certeza ?"
+                title="Sortear outro ?"
                 id="draw-another-confirmation-modal"
             >
                 <div>
                     <p>
-                        Você ainda não adivinhou o desafio atual, quer mesmo
-                        sortear outro? Você também pode revelar a resposta antes
-                        de prosseguir.
+                        Você ainda não adivinhou o atual, quer mesmo sortear
+                        outro? Você também pode revelar a resposta antes de
+                        prosseguir.
                     </p>
                 </div>
                 <div className="modal-footer">
                     <button
                         type="button"
-                        className="cancel-btn"
+                        className="btn-back"
                         data-dismiss="modal"
                     >
                         Voltar
                     </button>
                     <button
                         type="button"
-                        className="confirm-btn"
+                        className="btn-confirm"
                         data-dismiss="modal"
                         onClick={revealAnswer}
                     >
@@ -178,7 +148,7 @@ const GameInterface = () => {
                     </button>
                     <button
                         type="button"
-                        className="confirm-btn"
+                        className="btn-confirm"
                         data-dismiss="modal"
                         onClick={handlePlay}
                     >
@@ -192,19 +162,19 @@ const GameInterface = () => {
                 id="reveal-confirmation-modal"
             >
                 <div>
-                    <p>Quer mesmo revelar a resposta ? ...</p>
+                    <p>Quer mesmo revelar a resposta ?</p>
                 </div>
                 <div className="modal-footer">
                     <button
                         type="button"
-                        className="cancel-btn"
+                        className="btn-back"
                         data-dismiss="modal"
                     >
                         Voltar
                     </button>
                     <button
                         type="button"
-                        className="confirm-btn"
+                        className="btn-confirm"
                         data-dismiss="modal"
                         onClick={revealAnswer}
                     >
@@ -217,11 +187,7 @@ const GameInterface = () => {
                 title="Selecionar gerações"
                 id="generations-modal"
             >
-                <div
-                    id="generations-container"
-                    ref={generationsContainer}
-                    onClick={removeErrorFeedback}
-                >
+                <div id="generations-container">
                     <h6>Selecione quais gerações deseja incluir ao jogo:</h6>
                     <div id="generations-options">
                         {generationsList.map((generation, index) => (
@@ -235,7 +201,7 @@ const GameInterface = () => {
                 <div className="modal-footer">
                     <button
                         type="button"
-                        className="confirm-btn"
+                        className="btn-confirm"
                         data-dismiss="modal"
                         aria-label="save and close"
                     >
@@ -258,9 +224,9 @@ const GameInterface = () => {
                 <div className="modal-footer">
                     <button
                         type="button"
-                        className="confirm-btn"
+                        className="btn-confirm"
                         data-dismiss="modal"
-                        onClick={openGenerationsModal}
+                        onClick={() => showModal('#generations-modal')}
                     >
                         Selecionar Gerações
                     </button>

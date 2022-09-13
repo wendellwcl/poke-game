@@ -8,8 +8,9 @@ const PokeDisplay = () => {
         <section id="poke-display">
             <img
                 src={poke.sprites.other['official-artwork'].front_default}
-                alt=""
                 id="poke-img"
+                className={alreadyAnswered ? 'show' : undefined}
+                alt=""
             />
             <h6
                 id="poke-name"

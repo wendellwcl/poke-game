@@ -9,79 +9,77 @@
         display: grid;
         place-items: center;
     }
+}
 
-    .modal-fade {
-        position: fixed;
-        inset: 0;
-        background: rgba($mainColor-superDarkTone, 0.8);
-        z-index: inherit;
+.modal-fade {
+    position: fixed;
+    inset: 0;
+    background: rgba($mainColor-superDarkTone, 0.8);
+    z-index: inherit;
+}
+
+.modal-body {
+    background-color: $light-color;
+    border: 3px solid $mainColor;
+    border-radius: 8px;
+    max-width: 600px;
+    min-width: 200px;
+    padding: 16px;
+    position: relative;
+    overflow: hidden;
+    z-index: inherit;
+}
+
+.btn-close-modal {
+    display: block;
+    width: 64px;
+    height: 48px;
+    position: absolute;
+    top: -2px;
+    right: -2px;
+    background: none;
+    border: none;
+    cursor: pointer;
+
+    .bg-btn-close {
+        fill: $mainColor;
     }
 
-    .modal-body {
-        background-color: $light-color;
-        border: 3px solid $mainColor;
-        border-radius: 8px;
-        max-width: 600px;
-        min-width: 200px;
-        padding: 16px;
-        position: relative;
-        overflow: hidden;
-        z-index: inherit;
+    .close-icon {
+        position: absolute;
+        top: 15%;
+        right: 15%;
+        font-size: 1.5rem;
+        color: $mainColor-superLightTone;
+    }
+}
 
-        .btn-close {
-            display: block;
-            width: 64px;
-            height: 48px;
-            position: absolute;
-            top: -2px;
-            right: -2px;
-            background: none;
-            border: none;
-            cursor: pointer;
+.modal-header {
+    padding-bottom: 8px;
+    margin-bottom: 8px;
+    border-bottom: 1px solid $mainColor-desaturedTone;
+    color: $mainColor-superDarkTone;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
 
-            .bg-btn-close {
-                fill: $mainColor;
-            }
+.modal-footer {
+    margin-top: 16px;
+    display: flex;
+    justify-content: flex-end;
 
-            .close-icon {
-                position: absolute;
-                top: 15%;
-                right: 15%;
-                font-size: 1.5rem;
-                color: $mainColor-superLightTone;
-            }
-        }
+    button {
+        margin-left: 16px;
+        font-size: 0.9rem;
     }
 
-    .modal-header {
-        padding-bottom: 8px;
-        margin-bottom: 8px;
-        border-bottom: 1px solid $mainColor-desaturedTone;
-        color: $mainColor-superDarkTone;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
+    .btn-back {
+        @include btn-base(transparent, $mainColor-darkTone);
+        border: 1px solid $mainColor-desaturedTone;
     }
 
-    .modal-dialog {
-        .modal-footer {
-            margin-top: 16px;
-            display: flex;
-            justify-content: flex-end;
-
-            button {
-                margin-left: 16px;
-                font-size: 0.9rem;
-            }
-
-            .cancel-btn {
-                @include btn-base(transparent, $mainColor-darkTone);
-                border: 2px solid $mainColor-desaturedTone;
-            }
-
-            .confirm-btn {
-                @include btn-base($mainColor, $light-color);
-            }
-        }
+    .btn-confirm {
+        @include btn-base($mainColor, $light-color);
     }
 }

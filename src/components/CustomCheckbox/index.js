@@ -6,6 +6,7 @@ const CustomCheckbox = ({ generation }) => {
     const [checked, setChecked] = useState(isChecked);
     const [text, setText] = useState(name);
 
+    //Handling the name
     useEffect(() => {
         const index = name.search('-');
         const uppercase = name.slice(index + 1).toUpperCase();
@@ -34,10 +35,7 @@ const CustomCheckbox = ({ generation }) => {
                 onChange={toggleChecked}
             />
             <span className="custom-checkbox-text">{text}</span>
-            <div
-                className="custom-checkbox-box"
-                tabIndex="1"
-            ></div>
+            <div className="custom-checkbox-box"></div>
         </label>
     );
 };
