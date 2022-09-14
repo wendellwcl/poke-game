@@ -33,7 +33,8 @@ export const DataContextProvider = ({ children }) => {
         const pokeData = await fetchJSON(specieData.varieties[0].pokemon.url);
 
         setPoke(pokeData);
-        setLoading(false);
+
+        setTimeout(() => setLoading(false), 1000);
 
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [generationsList]);
