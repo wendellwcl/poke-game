@@ -291,26 +291,25 @@ body {
   overflow: hidden;
   z-index: inherit;
 }
+.modal-body .modal-corner {
+  position: absolute;
+  top: 0;
+  right: 0;
+  fill: #306ab1;
+  width: 48px;
+}
 
 .btn-close-modal {
-  display: block;
-  width: 64px;
-  height: 48px;
   position: absolute;
-  top: -2px;
-  right: -2px;
+  top: 0;
+  right: 0;
+  padding: 8px;
   background: none;
   border: none;
+  font-size: 1.5rem;
   cursor: pointer;
 }
-.btn-close-modal .bg-btn-close {
-  fill: #306ab1;
-}
 .btn-close-modal .close-icon {
-  position: absolute;
-  top: 15%;
-  right: 15%;
-  font-size: 1.5rem;
   color: #e9efff;
 }
 
