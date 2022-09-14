@@ -45,6 +45,102 @@ body {
   }
 }
 
+#loading-screen {
+  width: 100%;
+  height: 100%;
+  display: grid;
+  place-items: center;
+}
+#loading-screen div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+#loading-screen div img {
+  display: block;
+  width: 64px;
+  transform-origin: bottom center;
+  -webkit-animation: ball 3s infinite ease-in-out;
+          animation: ball 3s infinite ease-in-out;
+}
+#loading-screen div span {
+  color: #000a14;
+  font-family: "Francois One", sans-serif;
+  font-size: 2rem;
+  margin-top: 16px;
+}
+
+@-webkit-keyframes ball {
+  0% {
+    transform: rotate(0deg);
+  }
+  10% {
+    transform: rotate(30deg);
+  }
+  20% {
+    transform: rotate(-15deg);
+  }
+  30% {
+    transform: rotate(10deg);
+  }
+  40% {
+    transform: rotate(0deg);
+  }
+  50% {
+    transform: rotate(0deg);
+  }
+  60% {
+    transform: rotate(-30deg);
+  }
+  70% {
+    transform: rotate(15deg);
+  }
+  80% {
+    transform: rotate(-10deg);
+  }
+  90% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(0deg);
+  }
+}
+
+@keyframes ball {
+  0% {
+    transform: rotate(0deg);
+  }
+  10% {
+    transform: rotate(30deg);
+  }
+  20% {
+    transform: rotate(-15deg);
+  }
+  30% {
+    transform: rotate(10deg);
+  }
+  40% {
+    transform: rotate(0deg);
+  }
+  50% {
+    transform: rotate(0deg);
+  }
+  60% {
+    transform: rotate(-30deg);
+  }
+  70% {
+    transform: rotate(15deg);
+  }
+  80% {
+    transform: rotate(-10deg);
+  }
+  90% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(0deg);
+  }
+}
 #poke-display {
   grid-area: pokeDisplay;
   width: 100%;

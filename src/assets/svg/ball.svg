@@ -1,0 +1,31 @@
+<svg id="ball" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 31.03 31.03">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #fbfbfb;
+      }
+
+      .cls-2 {
+        fill: #eb5972;
+      }
+
+      .cls-3, .cls-4 {
+        fill: none;
+        stroke: #1d1d1b;
+        stroke-miterlimit: 10;
+        stroke-width: 2px;
+      }
+
+      .cls-4 {
+        stroke-linecap: round;
+      }
+    </style>
+  </defs>
+  <title>ball</title>
+  <circle class="cls-1" cx="15.51" cy="15.51" r="14.51"/>
+  <path class="cls-2" d="M16,1.49A14.5,14.5,0,0,0,1.49,16h10a4.47,4.47,0,1,1,8.94,0h10A14.5,14.5,0,0,0,16,1.49Z" transform="translate(-0.49 -0.49)"/>
+  <circle class="cls-3" cx="15.51" cy="15.51" r="4.47"/>
+  <line class="cls-3" x1="1" y1="15.51" x2="11.04" y2="15.51"/>
+  <line class="cls-3" x1="19.98" y1="15.51" x2="30.03" y2="15.51"/>
+  <path class="cls-4" d="M27.57,7.24A15.83,15.83,0,0,1,30.51,16,14.51,14.51,0,1,1,16,1.49a15,15,0,0,1,8.74,2.92" transform="translate(-0.49 -0.49)"/>
+</svg>
