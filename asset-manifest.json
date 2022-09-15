@@ -1,0 +1,14 @@
+{
+  "files": {
+    "main.css": "/quem-e-esse/static/css/main.86e3920a.css",
+    "main.js": "/quem-e-esse/static/js/main.de297589.js",
+    "static/media/ball.svg": "/quem-e-esse/static/media/ball.f675446f18c9352c7da7403e3c47935e.svg",
+    "index.html": "/quem-e-esse/index.html",
+    "main.86e3920a.css.map": "/quem-e-esse/static/css/main.86e3920a.css.map",
+    "main.de297589.js.map": "/quem-e-esse/static/js/main.de297589.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.86e3920a.css",
+    "static/js/main.de297589.js"
+  ]
+}
