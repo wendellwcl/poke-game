@@ -34,7 +34,12 @@ export const DataContextProvider = ({ children }) => {
 
         setPoke(pokeData);
 
-        setTimeout(() => setLoading(false), 1000);
+        setTimeout(() => {
+            setLoading(false);
+            setTimeout(() => {
+                document.querySelector('#guess-input').focus();
+            }, 200);
+        }, 1000);
 
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [generationsList]);

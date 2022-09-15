@@ -41,6 +41,8 @@ const GameInterface = () => {
 
         const el = document.querySelector('#hint');
         el.textContent = hint;
+
+        document.querySelector('#guess-input').focus();
     }
 
     function drawAnotherPoke() {
