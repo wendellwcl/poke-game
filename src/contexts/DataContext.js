@@ -1,5 +1,4 @@
 import { createContext, useState, useEffect, useCallback } from 'react';
-import { fetchJSON } from '../helper/ReusableFunctions';
 
 import { showModal } from '../components/Modal';
 
@@ -28,9 +27,13 @@ export const DataContextProvider = ({ children }) => {
 
         const randomPoke = drawPoke(species);
 
-        const specieData = await fetchJSON(randomPoke.url);
+        const specieData = await fetch(randomPoke.url)
+            .then((res) => res.json())
+            .catch((e) => alert(`Ops! Ocorreu um Erro: ${e}`));
 
-        const pokeData = await fetchJSON(specieData.varieties[0].pokemon.url);
+        const pokeData = await fetch(specieData.varieties[0].pokemon.url)
+            .then((res) => res.json())
+            .catch((e) => alert(`Ops! Ocorreu um Erro: ${e}`));
 
         setPoke(pokeData);
 
@@ -39,7 +42,7 @@ export const DataContextProvider = ({ children }) => {
             setTimeout(() => {
                 document.querySelector('#guess-input').focus();
             }, 200);
-        }, 1000);
+        }, 500);
 
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [generationsList]);
@@ -48,16 +51,19 @@ export const DataContextProvider = ({ children }) => {
         async function fetchGenerationsData() {
             const auxiliarArray = [];
 
-            const generationsData = await fetchJSON(
+            const generationsData = await fetch(
                 'https://pokeapi.co/api/v2/generation/'
-            );
+            )
+                .then((res) => res.json())
+                .then((res) => Array.from(res.results))
+                .catch((e) => alert(`Ops! Ocorreu um Erro: ${e}`));
 
-            const urls = generationsData.results.map(
-                (generation) => generation.url
-            );
+            const urls = generationsData.map((generation) => generation.url);
 
             for (const [idx, url] of urls.entries()) {
-                const newGenerationData = await fetchJSON(url);
+                const newGenerationData = await fetch(url)
+                    .then((res) => res.json())
+                    .catch((e) => alert(`Ops! Ocorreu um Erro: ${e}`));
 
                 if (
                     !auxiliarArray.includes(
