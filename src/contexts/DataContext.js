@@ -6,6 +6,7 @@ export const DataContext = createContext();
 
 export const DataContextProvider = ({ children }) => {
     const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(false);
     const [generationsList, setGenerationsList] = useState([]);
     const [speciesList, setSpeciesList] = useState();
     const [poke, setPoke] = useState();
@@ -28,12 +29,26 @@ export const DataContextProvider = ({ children }) => {
         const randomPoke = drawPoke(species);
 
         const specieData = await fetch(randomPoke.url)
-            .then((res) => res.json())
-            .catch((e) => alert(`Ops! Ocorreu um Erro: ${e}`));
+            .then((res) => {
+                if (res.ok) {
+                    return res.json();
+                }
+                setLoading(false);
+                setError(true);
+                throw new Error('Não foi possível carregar dados do Poke');
+            })
+            .catch((e) => console.error(e));
 
         const pokeData = await fetch(specieData.varieties[0].pokemon.url)
-            .then((res) => res.json())
-            .catch((e) => alert(`Ops! Ocorreu um Erro: ${e}`));
+            .then((res) => {
+                if (res.ok) {
+                    return res.json();
+                }
+                setLoading(false);
+                setError(true);
+                throw new Error('Não foi possível carregar dados do Poke');
+            })
+            .catch((e) => console.error(e));
 
         setPoke(pokeData);
 
@@ -54,16 +69,34 @@ export const DataContextProvider = ({ children }) => {
             const generationsData = await fetch(
                 'https://pokeapi.co/api/v2/generation/'
             )
-                .then((res) => res.json())
+                .then((res) => {
+                    if (res.ok) {
+                        return res.json();
+                    }
+                    setLoading(false);
+                    setError(true);
+                    throw new Error(
+                        'Não foi possível carregar dados das Generations'
+                    );
+                })
                 .then((res) => Array.from(res.results))
-                .catch((e) => alert(`Ops! Ocorreu um Erro: ${e}`));
+                .catch((e) => console.error(e));
 
             const urls = generationsData.map((generation) => generation.url);
 
             for (const [idx, url] of urls.entries()) {
                 const newGenerationData = await fetch(url)
-                    .then((res) => res.json())
-                    .catch((e) => alert(`Ops! Ocorreu um Erro: ${e}`));
+                    .then((res) => {
+                        if (res.ok) {
+                            return res.json();
+                        }
+                        setLoading(false);
+                        setError(true);
+                        throw new Error(
+                            'Não foi possível carregar dados das Generations'
+                        );
+                    })
+                    .catch((e) => console.error(e));
 
                 if (
                     !auxiliarArray.includes(
@@ -120,6 +153,7 @@ export const DataContextProvider = ({ children }) => {
         <DataContext.Provider
             value={{
                 loading,
+                error,
                 generationsList,
                 speciesList,
                 poke,
