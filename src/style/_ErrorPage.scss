@@ -1,0 +1,23 @@
+#error-page {
+    width: 100%;
+    height: 100%;
+    display: grid;
+    place-items: center;
+
+    div {
+        max-width: 100%;
+    }
+
+    p {
+        text-align: center;
+        font-size: 1.2rem;
+        color: $mainColor-superLightTone;
+        margin-bottom: 16px;
+    }
+
+    button {
+        width: 100%;
+        font-size: 1rem;
+        @include btn-base($secondary-color, $mainColor-superLightTone);
+    }
+}
