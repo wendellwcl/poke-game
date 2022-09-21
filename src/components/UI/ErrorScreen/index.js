@@ -1,10 +1,10 @@
-const ErrorPage = () => {
+const ErrorScreen = () => {
     function reload() {
         window.location.reload();
     }
 
     return (
-        <div id="error-page">
+        <div id="error-screen">
             <div>
                 <p>
                     Ops... Algo de errado aconteceu. <br />
@@ -22,4 +22,4 @@ const ErrorPage = () => {
     );
 };
 
-export default ErrorPage;
+export default ErrorScreen;

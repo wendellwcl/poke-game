@@ -31,10 +31,10 @@ body {
 
 //components
 @import '../components/CustomCheckbox/CustomCheckbox';
-@import '../components/ErrorPage/ErrorPage';
 
 //components/ui
 @import '../components/UI/Loading/Loading';
+@import '../components/UI/ErrorScreen/ErrorScreen';
 @import '../components/UI/Modal/Modal';
 
 //pages/Game
