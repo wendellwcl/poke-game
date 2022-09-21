@@ -20,29 +20,73 @@ body {
   height: 100vh;
   padding: 16px;
 }
-@media screen and (min-width: 768px) {
-  #root {
-    height: 100vh;
-  }
-}
 
 .App {
-  min-height: 100%;
-  background-color: #e9efff;
-  box-shadow: 0px 0px 5px 2px #224b7d;
-  border-radius: 8px;
-  display: grid;
-  grid-template-columns: auto;
-  grid-template-rows: repeat(2, minMax(calc(50vh - 16px), auto));
-  grid-template-areas: "pokeDisplay" "gameInterface";
-  overflow: hidden;
+  height: 100%;
 }
-@media screen and (min-width: 768px) {
-  .App {
-    grid-template-columns: repeat(5, 1fr);
-    grid-template-rows: auto;
-    grid-template-areas: "pokeDisplay pokeDisplay pokeDisplay gameInterface gameInterface";
-  }
+
+.custom-checkbox-label {
+  display: flex;
+  flex-direction: row-reverse;
+  align-items: center;
+  justify-content: flex-end;
+  padding: 0.75rem;
+  cursor: pointer;
+  position: relative;
+}
+.custom-checkbox-label input {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 0;
+  opacity: 0;
+}
+.custom-checkbox-label .custom-checkbox-box {
+  width: 16px;
+  height: 16px;
+  border: 2px solid #f45a72;
+  border-radius: 50%;
+  margin-right: 0.5rem;
+  transition: 0.2s;
+}
+.custom-checkbox-label input:checked ~ .custom-checkbox-box {
+  background: #f45a72;
+}
+.custom-checkbox-label .custom-checkbox-text {
+  text-transform: capitalize;
+  font-weight: bold;
+  color: #000a14;
+}
+
+#error-page {
+  width: 100%;
+  height: 100%;
+  display: grid;
+  place-items: center;
+}
+#error-page div {
+  max-width: 100%;
+}
+#error-page p {
+  text-align: center;
+  font-size: 1.2rem;
+  color: #e9efff;
+  margin-bottom: 16px;
+}
+#error-page button {
+  width: 100%;
+  font-size: 1rem;
+  display: block;
+  min-width: 64px;
+  padding: 8px 16px;
+  background: linear-gradient(90deg, #f45a72, #f48f5a);
+  border: none;
+  border-radius: 64px;
+  color: #e9efff;
+  font-weight: bold;
+  letter-spacing: 1px;
+  cursor: pointer;
 }
 
 #loading-screen {
@@ -141,34 +185,120 @@ body {
     transform: rotate(0deg);
   }
 }
-#error-page {
-  width: 100%;
-  height: 100%;
+.modal {
+  position: fixed;
+  inset: 0;
+  display: none;
+  padding: 32px;
+  z-index: 10;
+}
+.modal.show {
   display: grid;
   place-items: center;
 }
-#error-page div {
-  max-width: 100%;
+
+.modal-fade {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 10, 20, 0.8);
+  z-index: inherit;
 }
-#error-page p {
-  text-align: center;
-  font-size: 1.2rem;
+
+.modal-body {
+  background-color: #f4f4fa;
+  border: 3px solid #306ab1;
+  border-radius: 8px;
+  max-width: 600px;
+  min-width: 200px;
+  padding: 16px;
+  position: relative;
+  overflow: hidden;
+  z-index: inherit;
+}
+.modal-body .modal-corner {
+  position: absolute;
+  top: 0;
+  right: 0;
+  fill: #306ab1;
+  width: 48px;
+}
+
+.btn-close-modal {
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 8px;
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+.btn-close-modal .close-icon {
   color: #e9efff;
-  margin-bottom: 16px;
 }
-#error-page button {
-  width: 100%;
-  font-size: 1rem;
+
+.modal-header {
+  padding-bottom: 8px;
+  margin-bottom: 8px;
+  border-bottom: 1px solid #6c90bd;
+  color: #000a14;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.modal-footer {
+  margin-top: 16px;
+  display: flex;
+  justify-content: flex-end;
+}
+.modal-footer button {
+  margin-left: 16px;
+  font-size: 0.9rem;
+}
+.modal-footer .btn-back {
   display: block;
   min-width: 64px;
   padding: 8px 16px;
-  background: linear-gradient(90deg, #f45a72, #f48f5a);
+  background: linear-gradient(90deg, transparent, rgba(0, 0, 0, 0));
   border: none;
   border-radius: 64px;
-  color: #e9efff;
+  color: #224b7d;
   font-weight: bold;
   letter-spacing: 1px;
   cursor: pointer;
+  border: 1px solid #6c90bd;
+}
+.modal-footer .btn-confirm {
+  display: block;
+  min-width: 64px;
+  padding: 8px 16px;
+  background: linear-gradient(90deg, #306ab1, #3730b1);
+  border: none;
+  border-radius: 64px;
+  color: #f4f4fa;
+  font-weight: bold;
+  letter-spacing: 1px;
+  cursor: pointer;
+}
+
+#game {
+  min-height: 100%;
+  background-color: #e9efff;
+  box-shadow: 0px 0px 5px 2px #224b7d;
+  border-radius: 8px;
+  display: grid;
+  grid-template-columns: auto;
+  grid-template-rows: repeat(2, minMax(calc(50vh - 16px), auto));
+  grid-template-areas: "pokeDisplay" "gameInterface";
+  overflow: hidden;
+}
+@media screen and (min-width: 768px) {
+  #game {
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-rows: auto;
+    grid-template-areas: "pokeDisplay pokeDisplay pokeDisplay gameInterface gameInterface";
+  }
 }
 
 #poke-display {
@@ -361,40 +491,6 @@ body {
   }
 }
 
-.custom-checkbox-label {
-  display: flex;
-  flex-direction: row-reverse;
-  align-items: center;
-  justify-content: flex-end;
-  padding: 0.75rem;
-  cursor: pointer;
-  position: relative;
-}
-.custom-checkbox-label input {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 0;
-  height: 0;
-  opacity: 0;
-}
-.custom-checkbox-label .custom-checkbox-box {
-  width: 16px;
-  height: 16px;
-  border: 2px solid #f45a72;
-  border-radius: 50%;
-  margin-right: 0.5rem;
-  transition: 0.2s;
-}
-.custom-checkbox-label input:checked ~ .custom-checkbox-box {
-  background: #f45a72;
-}
-.custom-checkbox-label .custom-checkbox-text {
-  text-transform: capitalize;
-  font-weight: bold;
-  color: #000a14;
-}
-
 #game-interface {
   grid-area: gameInterface;
   padding: 16px;
@@ -527,101 +623,4 @@ body {
 }
 #generations-container #generations-options label {
   flex: 0 1 180px;
-}
-
-.modal {
-  position: fixed;
-  inset: 0;
-  display: none;
-  padding: 32px;
-  z-index: 10;
-}
-.modal.show {
-  display: grid;
-  place-items: center;
-}
-
-.modal-fade {
-  position: fixed;
-  inset: 0;
-  background: rgba(0, 10, 20, 0.8);
-  z-index: inherit;
-}
-
-.modal-body {
-  background-color: #f4f4fa;
-  border: 3px solid #306ab1;
-  border-radius: 8px;
-  max-width: 600px;
-  min-width: 200px;
-  padding: 16px;
-  position: relative;
-  overflow: hidden;
-  z-index: inherit;
-}
-.modal-body .modal-corner {
-  position: absolute;
-  top: 0;
-  right: 0;
-  fill: #306ab1;
-  width: 48px;
-}
-
-.btn-close-modal {
-  position: absolute;
-  top: 0;
-  right: 0;
-  padding: 8px;
-  background: none;
-  border: none;
-  font-size: 1.5rem;
-  cursor: pointer;
-}
-.btn-close-modal .close-icon {
-  color: #e9efff;
-}
-
-.modal-header {
-  padding-bottom: 8px;
-  margin-bottom: 8px;
-  border-bottom: 1px solid #6c90bd;
-  color: #000a14;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-
-.modal-footer {
-  margin-top: 16px;
-  display: flex;
-  justify-content: flex-end;
-}
-.modal-footer button {
-  margin-left: 16px;
-  font-size: 0.9rem;
-}
-.modal-footer .btn-back {
-  display: block;
-  min-width: 64px;
-  padding: 8px 16px;
-  background: linear-gradient(90deg, transparent, rgba(0, 0, 0, 0));
-  border: none;
-  border-radius: 64px;
-  color: #224b7d;
-  font-weight: bold;
-  letter-spacing: 1px;
-  cursor: pointer;
-  border: 1px solid #6c90bd;
-}
-.modal-footer .btn-confirm {
-  display: block;
-  min-width: 64px;
-  padding: 8px 16px;
-  background: linear-gradient(90deg, #306ab1, #3730b1);
-  border: none;
-  border-radius: 64px;
-  color: #f4f4fa;
-  font-weight: bold;
-  letter-spacing: 1px;
-  cursor: pointer;
 }/*# sourceMappingURL=index.css.map */

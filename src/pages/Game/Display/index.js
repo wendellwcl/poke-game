@@ -1,9 +1,9 @@
 import { useContext } from 'react';
-import { DataContext } from '../../contexts/DataContext';
+import { DataContext } from '../../../contexts/DataContext';
 
-import Ball from '../../assets/svg/ball.svg';
+import Ball from '../../../assets/svg/ball.svg';
 
-const PokeDisplay = () => {
+const Display = () => {
     const { poke, alreadyAnswered } = useContext(DataContext);
 
     return (
@@ -36,4 +36,4 @@ const PokeDisplay = () => {
     );
 };
 
-export default PokeDisplay;
+export default Display;

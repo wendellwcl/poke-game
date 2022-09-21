@@ -1,4 +1,4 @@
-import BallSVG from '../../assets/svg/ball.svg';
+import BallSVG from '../../../assets/svg/ball.svg';
 
 const Loading = () => {
     return (
@@ -9,7 +9,7 @@ const Loading = () => {
                     id="loading-img"
                     alt=""
                 />
-                <span>Loading...</span>
+                <span>Carregando...</span>
             </div>
         </div>
     );
