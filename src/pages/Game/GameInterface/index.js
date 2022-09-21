@@ -3,8 +3,10 @@ import { BsArrowRight } from 'react-icons/bs';
 
 import { DataContext } from '../../../contexts/DataContext';
 
+import { showModal } from '../../../utils/ShowModal';
+
 import CustomCheckbox from '../../../components/CustomCheckbox';
-import Modal, { showModal } from '../../../components/UI/Modal';
+import Modal from '../../../components/UI/Modal';
 
 const GameInterface = () => {
     const {

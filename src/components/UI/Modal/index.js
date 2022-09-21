@@ -68,8 +68,3 @@ const Modal = ({ id, title, children }) => {
 };
 
 export default Modal;
-
-//Show Modal
-export function showModal(targetModal) {
-    document.querySelector(targetModal).classList.add('show');
-}
