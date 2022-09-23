@@ -1,55 +1,23 @@
-import { useContext, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { BsArrowRight } from 'react-icons/bs';
 
 import { DataContext } from '../../../contexts/DataContext';
 
+import useGameCommands from './useGameCommands';
+
 import { showModal } from '../../../utils/ShowModal';
 
 const GameInterface = () => {
-    const {
-        speciesList,
-        poke,
-        alreadyAnswered,
-        setAlreadyAnswered,
-        handlePlay,
-    } = useContext(DataContext);
+    const { speciesList, alreadyAnswered } = useContext(DataContext);
 
-    const [hintReveled, setHintReveled] = useState(false);
+    const { handleGuess, drawAnother, revealHint, showHint } =
+        useGameCommands();
 
-    function handleGuess(e) {
-        e.preventDefault();
+    const [hintIsReveled, setHintIsReveled] = useState();
 
-        const inputEl = document.querySelector('#guess-input');
-        const res = inputEl.value;
-
-        if (res === poke.name) {
-            setAlreadyAnswered(true);
-        } else {
-            inputEl.value = '';
-        }
-    }
-
-    function revealHint() {
-        setHintReveled(true);
-
-        let hint = Array.from(poke.name);
-        hint = hint.fill('_', 2);
-        hint = hint.join(' ');
-
-        const el = document.querySelector('#hint');
-        el.textContent = hint;
-
-        document.querySelector('#guess-input').focus();
-    }
-
-    function drawAnotherPoke() {
-        if (!alreadyAnswered) {
-            showModal('#draw-another-confirmation-modal');
-            return;
-        }
-
-        handlePlay();
-    }
+    useEffect(() => {
+        setHintIsReveled(showHint);
+    }, [showHint]);
 
     return (
         <section id="game-interface">
@@ -86,7 +54,7 @@ const GameInterface = () => {
                         id="hint-btn"
                         onClick={revealHint}
                     >
-                        {hintReveled ? 'Dica:' : 'Revelar Dica'}
+                        {hintIsReveled ? 'Dica:' : 'Revelar Dica'}
                     </button>
                     <span id="hint"></span>
                 </div>
@@ -95,7 +63,7 @@ const GameInterface = () => {
             <div id="controls-container">
                 <button
                     type="button"
-                    onClick={drawAnotherPoke}
+                    onClick={drawAnother}
                 >
                     Sortear outro
                 </button>
