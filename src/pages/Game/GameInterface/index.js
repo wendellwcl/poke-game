@@ -5,12 +5,8 @@ import { DataContext } from '../../../contexts/DataContext';
 
 import { showModal } from '../../../utils/ShowModal';
 
-import CustomCheckbox from '../../../components/CustomCheckbox';
-import Modal from '../../../components/UI/Modal';
-
 const GameInterface = () => {
     const {
-        generationsList,
         speciesList,
         poke,
         alreadyAnswered,
@@ -27,7 +23,6 @@ const GameInterface = () => {
         const res = inputEl.value;
 
         if (res === poke.name) {
-            revealAnswer();
             setAlreadyAnswered(true);
         } else {
             inputEl.value = '';
@@ -54,10 +49,6 @@ const GameInterface = () => {
         }
 
         handlePlay();
-    }
-
-    function revealAnswer() {
-        setAlreadyAnswered(true);
     }
 
     return (
@@ -122,120 +113,6 @@ const GameInterface = () => {
                     Selecionar Gerações
                 </button>
             </div>
-
-            <Modal
-                title="Sortear outro ?"
-                id="draw-another-confirmation-modal"
-            >
-                <div>
-                    <p>
-                        Você ainda não adivinhou o atual, quer mesmo sortear
-                        outro? Você também pode revelar a resposta antes de
-                        prosseguir.
-                    </p>
-                </div>
-                <div className="modal-footer">
-                    <button
-                        type="button"
-                        className="btn-back"
-                        data-dismiss="modal"
-                    >
-                        Voltar
-                    </button>
-                    <button
-                        type="button"
-                        className="btn-confirm"
-                        data-dismiss="modal"
-                        onClick={revealAnswer}
-                    >
-                        Revelar resposta
-                    </button>
-                    <button
-                        type="button"
-                        className="btn-confirm"
-                        data-dismiss="modal"
-                        onClick={handlePlay}
-                    >
-                        Sortear outro
-                    </button>
-                </div>
-            </Modal>
-
-            <Modal
-                title="Revelar resposta ?"
-                id="reveal-confirmation-modal"
-            >
-                <div>
-                    <p>Quer mesmo revelar a resposta ?</p>
-                </div>
-                <div className="modal-footer">
-                    <button
-                        type="button"
-                        className="btn-back"
-                        data-dismiss="modal"
-                    >
-                        Voltar
-                    </button>
-                    <button
-                        type="button"
-                        className="btn-confirm"
-                        data-dismiss="modal"
-                        onClick={revealAnswer}
-                    >
-                        Revelar
-                    </button>
-                </div>
-            </Modal>
-
-            <Modal
-                title="Selecionar gerações"
-                id="generations-modal"
-            >
-                <div id="generations-container">
-                    <h6>Selecione quais gerações deseja incluir ao jogo:</h6>
-                    <div id="generations-options">
-                        {generationsList.map((generation, index) => (
-                            <CustomCheckbox
-                                key={index}
-                                generation={generation}
-                            />
-                        ))}
-                    </div>
-                </div>
-                <div className="modal-footer">
-                    <button
-                        type="button"
-                        className="btn-confirm"
-                        data-dismiss="modal"
-                        aria-label="save and close"
-                    >
-                        Ok
-                    </button>
-                </div>
-            </Modal>
-
-            <Modal
-                title="Nenhuma Geração selecionada"
-                id="no-generation-checked"
-            >
-                <div>
-                    <p>
-                        Nenhuma Geração está selecionada. Por favor, selecione
-                        pelo menos uma ou mais Gerações para prosseguir com o
-                        jogo.
-                    </p>
-                </div>
-                <div className="modal-footer">
-                    <button
-                        type="button"
-                        className="btn-confirm"
-                        data-dismiss="modal"
-                        onClick={() => showModal('#generations-modal')}
-                    >
-                        Selecionar Gerações
-                    </button>
-                </div>
-            </Modal>
         </section>
     );
 };
