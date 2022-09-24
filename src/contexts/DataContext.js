@@ -62,6 +62,30 @@ export const DataContextProvider = ({ children }) => {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [generationsList]);
 
+    function checkGenerations() {
+        const selectedGenerations = generationsList.filter(
+            (generation) => generation.isChecked === true
+        );
+
+        return selectedGenerations;
+    }
+
+    function getSpecies(generations) {
+        let species = [];
+
+        generations.forEach((generation) => {
+            species = [...species, ...generation.species];
+        });
+
+        return species;
+    }
+
+    function drawPoke(species) {
+        const randomNumber = Math.floor(Math.random() * species.length);
+
+        return species[randomNumber];
+    }
+
     useEffect(() => {
         async function fetchGenerationsData() {
             const auxiliarArray = [];
@@ -124,30 +148,6 @@ export const DataContextProvider = ({ children }) => {
             handlePlay();
         }
     }, [generationsList, handlePlay]);
-
-    function checkGenerations() {
-        const selectedGenerations = generationsList.filter(
-            (generation) => generation.isChecked === true
-        );
-
-        return selectedGenerations;
-    }
-
-    function getSpecies(generations) {
-        let species = [];
-
-        generations.forEach((generation) => {
-            species = [...species, ...generation.species];
-        });
-
-        return species;
-    }
-
-    function drawPoke(species) {
-        const randomNumber = Math.floor(Math.random() * species.length);
-
-        return species[randomNumber];
-    }
 
     return (
         <DataContext.Provider
