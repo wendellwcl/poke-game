@@ -2,7 +2,7 @@ import { useState, useContext } from 'react';
 
 import { DataContext } from '../../../contexts/DataContext';
 
-import { showModal } from '../../../utils/ShowModal';
+import { showModal } from '../../../utils/showModal';
 
 const useGameCommands = () => {
     const { handlePlay, alreadyAnswered, setAlreadyAnswered, poke } =

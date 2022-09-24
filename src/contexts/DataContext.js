@@ -1,6 +1,6 @@
 import { createContext, useState, useEffect, useCallback } from 'react';
 
-import { showModal } from '../utils/ShowModal';
+import { showModal } from '../utils/showModal';
 
 export const DataContext = createContext();
 

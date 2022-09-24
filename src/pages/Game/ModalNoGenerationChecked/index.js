@@ -1,6 +1,6 @@
 import Modal from '../../../components/UI/Modal';
 
-import { showModal } from '../../../utils/ShowModal';
+import { showModal } from '../../../utils/showModal';
 
 const ModalNoGenerationChecked = () => {
     return (

@@ -5,7 +5,7 @@ import { DataContext } from '../../../contexts/DataContext';
 
 import useGameCommands from './useGameCommands';
 
-import { showModal } from '../../../utils/ShowModal';
+import { showModal } from '../../../utils/showModal';
 
 const GameInterface = () => {
     const { speciesList, alreadyAnswered } = useContext(DataContext);
