@@ -4,9 +4,13 @@ import { DataContext } from '../../../contexts/DataContext';
 
 import { showModal } from '../../../utils/showModal';
 
+import useStart from '../../../hooks/useStart';
+
 const useGameCommands = () => {
-    const { handlePlay, alreadyAnswered, setAlreadyAnswered, poke } =
+    const { alreadyAnswered, setAlreadyAnswered, poke } =
         useContext(DataContext);
+
+    const { start } = useStart();
 
     const [showHint, setShowHint] = useState(false);
 
@@ -29,7 +33,7 @@ const useGameCommands = () => {
             return;
         }
 
-        handlePlay();
+        start();
     }
 
     function revealHint() {

@@ -4,8 +4,12 @@ import { DataContext } from '../../../contexts/DataContext';
 
 import Modal from '../../../components/UI/Modal';
 
+import useStart from '../../../hooks/useStart';
+
 const ModalDrawAnother = () => {
-    const { handlePlay, setAlreadyAnswered } = useContext(DataContext);
+    const { setAlreadyAnswered } = useContext(DataContext);
+
+    const { start } = useStart();
 
     return (
         <Modal
@@ -38,7 +42,7 @@ const ModalDrawAnother = () => {
                     type="button"
                     className="btn-confirm"
                     data-dismiss="modal"
-                    onClick={handlePlay}
+                    onClick={start}
                 >
                     Sortear outro
                 </button>

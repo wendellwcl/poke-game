@@ -6,8 +6,17 @@ import Loading from './components/UI/Loading';
 import ErrorScreen from './components/UI/ErrorScreen';
 import Game from './pages/Game';
 
+import useStart from './hooks/useStart';
+
 function App() {
-    const { loading, error } = useContext(DataContext);
+    const { loading, error, generationsList } = useContext(DataContext);
+    const { start } = useStart();
+
+    window.addEventListener('start', () => {
+        if (generationsList.length > 0) {
+            start();
+        }
+    });
 
     if (loading) {
         return <Loading />;

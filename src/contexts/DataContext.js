@@ -1,6 +1,4 @@
-import { createContext, useState, useEffect, useCallback } from 'react';
-
-import { showModal } from '../utils/showModal';
+import { createContext, useState, useEffect } from 'react';
 
 export const DataContext = createContext();
 
@@ -12,79 +10,7 @@ export const DataContextProvider = ({ children }) => {
     const [poke, setPoke] = useState();
     const [alreadyAnswered, setAlreadyAnswered] = useState(false);
 
-    const handlePlay = useCallback(async () => {
-        const selectedGenerations = checkGenerations();
-
-        if (selectedGenerations.length < 1) {
-            showModal('#no-generation-checked');
-            return;
-        }
-
-        setLoading(true);
-        setAlreadyAnswered(false);
-
-        const species = getSpecies(selectedGenerations);
-        setSpeciesList(species);
-
-        const randomPoke = drawPoke(species);
-
-        const specieData = await fetch(randomPoke.url)
-            .then((res) => {
-                if (res.ok) {
-                    return res.json();
-                }
-                setLoading(false);
-                setError(true);
-                throw new Error('Não foi possível carregar dados do Poke');
-            })
-            .catch((e) => console.error(e));
-
-        const pokeData = await fetch(specieData.varieties[0].pokemon.url)
-            .then((res) => {
-                if (res.ok) {
-                    return res.json();
-                }
-                setLoading(false);
-                setError(true);
-                throw new Error('Não foi possível carregar dados do Poke');
-            })
-            .catch((e) => console.error(e));
-
-        setPoke(pokeData);
-
-        setTimeout(() => {
-            setLoading(false);
-            setTimeout(() => {
-                document.querySelector('#guess-input').focus();
-            }, 200);
-        }, 500);
-
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [generationsList]);
-
-    function checkGenerations() {
-        const selectedGenerations = generationsList.filter(
-            (generation) => generation.isChecked === true
-        );
-
-        return selectedGenerations;
-    }
-
-    function getSpecies(generations) {
-        let species = [];
-
-        generations.forEach((generation) => {
-            species = [...species, ...generation.species];
-        });
-
-        return species;
-    }
-
-    function drawPoke(species) {
-        const randomNumber = Math.floor(Math.random() * species.length);
-
-        return species[randomNumber];
-    }
+    const startEvent = new Event('start');
 
     useEffect(() => {
         async function fetchGenerationsData() {
@@ -138,28 +64,29 @@ export const DataContextProvider = ({ children }) => {
             }
 
             setGenerationsList(auxiliarArray);
+            window.dispatchEvent(startEvent);
         }
 
         fetchGenerationsData();
-    }, []);
 
-    useEffect(() => {
-        if (generationsList.length > 0) {
-            handlePlay();
-        }
-    }, [generationsList, handlePlay]);
+        //eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
 
     return (
         <DataContext.Provider
             value={{
                 loading,
+                setLoading,
                 error,
+                setError,
                 generationsList,
+                setGenerationsList,
                 speciesList,
+                setSpeciesList,
                 poke,
+                setPoke,
                 alreadyAnswered,
                 setAlreadyAnswered,
-                handlePlay,
             }}
         >
             {children}
