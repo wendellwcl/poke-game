@@ -1,14 +1,14 @@
 {
   "files": {
     "main.css": "/poke-game/static/css/main.ed0f0b2e.css",
-    "main.js": "/poke-game/static/js/main.7acf5be3.js",
+    "main.js": "/poke-game/static/js/main.e1d69881.js",
     "static/media/ball.svg": "/poke-game/static/media/ball.f675446f18c9352c7da7403e3c47935e.svg",
     "index.html": "/poke-game/index.html",
     "main.ed0f0b2e.css.map": "/poke-game/static/css/main.ed0f0b2e.css.map",
-    "main.7acf5be3.js.map": "/poke-game/static/js/main.7acf5be3.js.map"
+    "main.e1d69881.js.map": "/poke-game/static/js/main.e1d69881.js.map"
   },
   "entrypoints": [
     "static/css/main.ed0f0b2e.css",
-    "static/js/main.7acf5be3.js"
+    "static/js/main.e1d69881.js"
   ]
 }
