@@ -1,4 +1,4 @@
-import { useContext } from 'react';
+import { useContext, useEffect } from 'react';
 
 import { DataContext } from './contexts/DataContext';
 
@@ -12,11 +12,13 @@ function App() {
     const { loading, error, generationsList } = useContext(DataContext);
     const { start } = useStart();
 
-    window.addEventListener('start', () => {
+    useEffect(() => {
         if (generationsList.length > 0) {
             start();
         }
-    });
+
+        //eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [generationsList]);
 
     if (loading) {
         return <Loading />;

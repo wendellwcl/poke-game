@@ -10,8 +10,6 @@ export const DataContextProvider = ({ children }) => {
     const [poke, setPoke] = useState();
     const [alreadyAnswered, setAlreadyAnswered] = useState(false);
 
-    const startEvent = new Event('start');
-
     useEffect(() => {
         async function fetchGenerationsData() {
             const auxiliarArray = [];
@@ -64,7 +62,6 @@ export const DataContextProvider = ({ children }) => {
             }
 
             setGenerationsList(auxiliarArray);
-            window.dispatchEvent(startEvent);
         }
 
         fetchGenerationsData();
